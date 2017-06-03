@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.staroot.model.Message;
-import com.staroot.model.User;
+import com.staroot.domain.Message;
+import com.staroot.domain.User;
 
 @Controller
 @RequestMapping("/user")
@@ -42,7 +42,7 @@ public class UserController {
 		System.out.println(user.getName());
 		System.out.println(user.getEmail());
 		users.add(user);
-		return "redirect:/user/list";
+		return "redirect:/user/member";
 
 	}
 

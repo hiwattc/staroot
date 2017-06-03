@@ -1,4 +1,4 @@
-package com.staroot.model;
+package com.staroot.domain;
 
 public class Message {
 	private String msgId;
