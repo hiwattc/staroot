@@ -1,0 +1,841 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,400i,700,700i" rel="stylesheet" />
+	<style type="text/css">
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+img {
+  border: 0;
+  height: auto;
+}
+p {
+  margin: 0;
+}
+.wrapper {
+  margin: 0 auto;
+  table-layout: fixed;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  border-collapse: separate;
+}
+.outer,
+.webkit {
+  margin: 0 auto;
+  width: 642px;
+  min-width: 642px;
+}
+.container {
+  font-size: 0;
+  text-align: center;
+}
+.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+.card {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 22px #dddddd;
+  -webkit-box-shadow: 0px 5px 22px #dddddd;
+  border: 1px solid #ededed;
+  overflow: hidden;
+}
+.image img {
+  display: block;
+}
+.left-round,
+.left-round img {
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.right-round,
+.right-round img {
+  -moz-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.round-top,
+.round-top img {
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.round-all,
+.round-all img {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.two-col .image,
+.three-col .image,
+.two-col .image img,
+.three-col .image img {
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 .h6 {
+  font-weight: bold;
+  color: #303030;
+  font-family: 'Montserrat', sans-serif;
+}
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 .h6 a {
+  color: #303030;
+}
+.h1 {
+  font-size: 38px;
+  line-height: 46px;
+  font-weight: bold;
+  letter-spacing: -0.01em;
+}
+.h2 {
+  font-size: 24px;
+  line-height: 26px;
+  font-weight: bold;
+  letter-spacing: -0.01em;
+}
+.h3 {
+  font-size: 24px;
+  line-height: 36px;
+}
+.h4 {
+  font-size: 21px;
+  line-height: 29px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  color: #959597;
+}
+.h4 a {
+  color: #959597;
+}
+.h5 {
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #959597;
+}
+.h5 a {
+  color: #959597;
+}
+.h6 {
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+.image {
+  font-size: 14px;
+  color: #9d9d9d;
+}
+.image img {
+  width: 100%;
+}
+.image a {
+  color: #959597;
+}
+.blockimg img {
+  display: block;
+}
+.spacer {
+  display: block;
+  color: #ffffff;
+  text-align: center;
+}
+.contents {
+  text-align: left;
+  color: #505050;
+  font-family: 'Open Sans', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #505050;
+}
+.h1 a,
+.h2 a,
+.h3 a,
+.h5 a {
+  color: #505050;
+}
+.one-col .inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.one-col .inner-nested {
+  padding: 55px 35px 60px 35px;
+}
+.layout-masthead .one-col .inner-nested {
+  padding: 62px 40px 34px 40px;
+}
+.layout-confirm .one-col .inner-nested {
+  padding: 40px 40px 25px 40px;
+}
+.one-col .button-only .inner-nested {
+  padding: 20px 35px 20px 35px;
+}
+.one-col .image img {
+  max-width: 600px;
+}
+.one-col .contents {
+  text-align: center;
+}
+.two-col .contents,
+.two-col-sidebar .contents,
+.three-col .contents {
+  text-align: left;
+}
+.two-col .contents {
+  font-size: 12px;
+  line-height: 16px;
+}
+.two-col .contents .h6 {
+  font-size: 14px;
+  line-height: 22px;
+}
+.three-col .contents {
+  font-size: 12px;
+  line-height: 16px;
+  color: #959597;
+}
+.three-col .contents a {
+  color: #959597;
+}
+.three-col .contents .h6 {
+  text-transform: none;
+  margin-bottom: 3px;
+}
+.two-col .contents,
+.three-col .contents {
+  color: #959597;
+}
+.two-col .contents a,
+.three-col .contents a {
+  color: #959597;
+}
+.two-col .contents .h6,
+.three-col .contents .h6 {
+  font-family: 'Montserrat', sans-serif;
+  color: #303030;
+}
+.two-col .contents .h6 a,
+.three-col .contents .h6 a {
+  color: #303030;
+}
+.two-col-sidebar .contents,
+.one-col .contents {
+  font-size: 16px;
+  line-height: 26px;
+}
+.two-col-sidebar .contents {
+  color: #505050;
+}
+.two-col-sidebar .contents .h5 {
+  margin-bottom: 5px;
+}
+.two-col-sidebar .contents a {
+  color: #2791d8;
+}
+.two-col .inner-nested,
+.three-col .inner-nested {
+  padding: 12px 11px 12px 13px;
+}
+.two-col .left {
+  max-width: 310px;
+}
+.two-col .right {
+  max-width: 310px;
+}
+.two-col .left .image img {
+  max-width: 290px;
+}
+.two-col .right .image img {
+  max-width: 290px;
+}
+.two-col .buffered {
+  padding: 0 10px 20px 10px;
+}
+.two-col .inner {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.two-col-sidebar .column {
+  vertical-align: middle;
+}
+.two-col-sidebar .narrow,
+.two-col-sidebar .narrow .image img {
+  max-width: 186px;
+}
+.two-col-sidebar .wide,
+.two-col-sidebar .wide .image img {
+  max-width: 414px;
+}
+.two-col-sidebar .inner-nested {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.two-col-sidebar p {
+  margin-bottom: 19px;
+}
+.two-col-sidebar .h3 {
+  margin-bottom: 12px;
+}
+.two-col-sidebar .cta {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+.left-bar .inner-nested {
+  padding-left: 20px;
+  padding-right: 40px;
+}
+.right-bar .inner-nested {
+  padding-left: 30px;
+  padding-right: 20px;
+}
+.three-col .column {
+  max-width: 206px;
+}
+.three-col .column .image img {
+  max-width: 186px;
+}
+.three-col .buffered {
+  padding: 0 10px 20px 10px;
+}
+.three-col .inner {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.buttonwrapper {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f94b71;
+  overflow: hidden;
+}
+.button a {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border-top: 10px solid #f94b71;
+  border-bottom: 10px solid #f94b71;
+  border-left: 40px solid #f94b71;
+  border-right: 40px solid #f94b71;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.buttonwrapper {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: bold;
+}
+.layout-preheader .inner {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.layout-preheader .contents {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  color: #505050;
+}
+.layout-preheader a {
+  color: #505050;
+  text-decoration: underline;
+}
+.layout-masthead .image img {
+  max-width: 215px;
+}
+.layout-masthead .logo {
+  padding-bottom: 50px;
+}
+.layout-masthead .h1 {
+  margin-bottom: 17px;
+}
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  color: #81b441;
+}
+.logo a {
+  color: #81b441;
+}
+.layout-hero p {
+  margin-bottom: 6px;
+}
+.layout-hero .h2 {
+  margin-bottom: 18px;
+}
+.layout-hero .floating-image .inner-nested {
+  padding-bottom: 30px;
+}
+.layout-hero .copy a {
+  text-decoration: underline;
+}
+.layout-hero .button a {
+  text-decoration: none;
+}
+.layout-confirm p {
+  margin-bottom: 13px;
+}
+.layout-confirm .h2 {
+  margin-bottom: 35px;
+}
+.layout-confirm a {
+  text-decoration: underline;
+}
+.layout-confirm .button a {
+  text-decoration: none;
+}
+.layout-interest .h1 {
+  margin-bottom: 12px;
+}
+.layout-interest .h4 {
+  margin-bottom: 33px;
+}
+.layout-headings {
+  text-align: center;
+}
+.layout-headings .inner {
+  padding: 35px 20px 25px 20px;
+}
+.layout-headings .h1 {
+  margin-bottom: 0;
+  font-size: 28px;
+}
+.layout-headings .h4 {
+  font-size: 18px;
+  line-height: 26px;
+}
+.layout-solologo .inner {
+  padding: 20px;
+}
+.layout-sidebar .h4 {
+  font-size: 16px;
+  line-height: 18px;
+}
+.layout-footer {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  line-height: 19px;
+  color: #303030;
+}
+.layout-footer .inner {
+  padding: 45px;
+}
+.layout-footer p {
+  margin-bottom: 30px;
+}
+.layout-footer .description a {
+  text-decoration: underline;
+}
+.layout-footer .h5 {
+  color: #303030;
+  margin-bottom: 8px;
+}
+.layout-footer .hrefs {
+  color: #7c7c7d;
+}
+.layout-footer .hrefs a {
+  text-decoration: underline;
+  color: #7c7c7d;
+}
+@media screen and (min-width: 5px) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .outer,
+  .webkit {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 642px !important;
+  }
+}
+div[style*="margin: 16px 0"] {
+  margin: 0 !important;
+}
+@media screen and (max-width: 449px) {
+  .contents {
+    font-size: 15px !important;
+    line-height: 1.625em !important;
+  }
+  .column,
+  .image img {
+    max-width: 100% !important;
+  }
+  .three-col .contents,
+  .two-col .contents {
+    font-size: 13px !important;
+  }
+  .three-col .h6,
+  .two-col .h6 {
+    font-size: 13px !important;
+    margin-bottom: 2px !important;
+  }
+  .layout-sidebar .image img {
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    -webkit-border-top-left-radius: 3px !important;
+    -webkit-border-top-right-radius: 3px !important;
+    -webkit-border-bottom-left-radius: 0 !important;
+    -webkit-border-bottom-right-radius: 0 !important;
+  }
+  .buffered {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .logo {
+    padding-bottom: 30px !important;
+  }
+  .layout-headings .h1 {
+    margin-bottom: 5px !important;
+  }
+  .layout-preheader .contents {
+    font-size: 12px !important;
+  }
+  .layout-masthead .inner-nested {
+    padding: 45px 20px 15px 20px !important;
+  }
+  .layout-masthead .h1 {
+    Margin-bottom: 5px !important;
+  }
+  .button-only .inner-nested {
+    padding-top: 10px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .layout-confirm .inner-nested {
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
+  }
+  .layout-solologo .inner-nested {
+    padding: 20px 0 0 0 !important;
+  }
+  .buttonwrapper {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .minify {
+    font-size: 20px !important;
+    line-height: 20px !important;
+  }
+  .button a {
+    border: none !important;
+    display: block !important;
+    padding: 10px !important;
+  }
+  .two-col-sidebar .inner-nested {
+    padding: 14px 14px 20px !important;
+  }
+  .two-col-sidebar .h3 {
+    margin-bottom: 2px !important;
+  }
+  .two-col-sidebar .h4 {
+    margin-bottom: 14px !important;
+  }
+  .layout-hero .one-col .inner-nested,
+  .layout-interest .one-col .inner-nested {
+    padding: 30px 20px 30px 20px !important;
+  }
+  .h1,
+  .h2 {
+    line-height: 1.3em !important;
+    Margin-bottom: 15px !important;
+  }
+  .h1 {
+    font-size: 26px !important;
+  }
+  .h2 {
+    font-size: 22px !important;
+  }
+  .h4 {
+    font-size: 18px !important;
+  }
+  .layout-footer.contents {
+    font-size: 12px !important;
+  }
+}
+@media screen and (min-width: 450px) {
+  .two-col .column {
+    max-width: 50% !important;
+  }
+  .three-col .column {
+    max-width: 33.3% !important;
+  }
+}
+@media screen and (min-width: 450px) and (max-width: 600px) {
+  .two-col .buffered,
+  .three-col .buffered {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+  .two-col .inner,
+  .three-col .inner {
+    padding-left: calc(7% - 6px) !important;
+    padding-right: calc(7% - 6px) !important;
+  }
+}
+@media screen and (min-width: 450px) and (max-width: 655px) {
+  .two-col-sidebar .narrow {
+    max-width: 40% !important;
+  }
+  .two-col-sidebar .wide {
+    max-width: 60% !important;
+  }
+  .two-col-sidebar .image img {
+    max-width: 100% !important;
+  }
+  .left-round {
+    text-align: left !important;
+  }
+  .right-round {
+    text-align: right !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .preheader {
+    display: none !important;
+  }
+  .layout-preheader .inner {
+    padding: 10px !important;
+  }
+  .webversion {
+    text-align: center !important;
+  }
+  .inner {
+    padding-left: 7% !important;
+    padding-right: 7% !important;
+  }
+  .two-col-sidebar p {
+    font-size: 13px !important;
+    line-height: 1.6em !important;
+  }
+  .two-col-sidebar .h3 {
+    font-size: 21px !important;
+  }
+  .two-col-sidebar .h5 {
+    font-size: 13px !important;
+  }
+  .mob-hide {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 5px) {
+  img {
+    height: auto !important;
+  }
+  .hide {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 656px) {
+  .two-col-sidebar .narrow {
+    max-width: 31% !important;
+  }
+  .two-col-sidebar .wide {
+    max-width: 69% !important;
+  }
+}
+a[x-apple-data-detectors=true] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+</style>
+	<!--[if !mso]><!-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!--<![endif]-->
+	<!--[if (mso)|(IE)]>
+	<style type="text/css">
+		body {background-color: #ffffff !important;}
+		.one-col .inner {padding-left: 21px !important; padding-right: 21px !important;}
+	</style>
+	<![endif]-->
+	
+	<!--[if mso]>
+	<style type="text/css">
+		table {border-collapse: collapse !important;}
+		table, div, p {font-family: sans-serif !important;}
+		.button {padding: 2px 30px 2px 30px !important;}
+	</style>
+	<![endif]-->
+	<!--[if IE]>
+	<style type="text/css">
+		table {border-collapse: separate !important;}
+	</style>
+	<![endif]-->
+<meta name="robots" content="noindex,nofollow"></meta>
+<meta property="og:title" content="Welcome to Envato Elements!"></meta>
+</head>
+<body style="margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#ffffff;" >
+	<table border="0" cellpadding="0" cellspacing="0" class="hide" style="width:640px;min-width:640px;" ><tr><td width="640" style="font-size:1px;line-height:1px;min-width:640px;" ><img src="https://i8.createsend1.com/ti/i/E8/332/576/131001//images/gmail.png" width="640" height="1" alt="" style="border-width:0;height:auto;" /></td></tr></table>
+	<div class="ios9">
+		
+		<table width="100%" cellpadding="0" cellspacing="0" align="center" border="0" class="wrapper" bgcolor="#f9f9fb" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;table-layout:fixed;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;border-collapse:separate;" >
+			<tr>
+				<td align="center">
+					<center>
+						<div class="webkit" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;width:642px;min-width:642px;" >
+							<!--[if (mso)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="640"><tr><td><![endif]-->
+							<table width="100%" cellpadding="0" cellspacing="0" border="0" class="outer layout-preheader" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;width:642px;min-width:642px;" >
+								<tr class="one-col">
+									<td class="inner" style="padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;" >
+										<table width="100%" border="0" cellpadding="0" cellspacing="0" class="contents" style="text-align:center;font-family:'Open Sans', sans-serif;font-size:12px;line-height:14px;color:#505050;" >
+											<tr>
+												<td width="70%" align="left" class="preheader">
+													Introduction to your free account.
+												</td>
+												<td width="30%" class="webversion hrefs" align="right">
+													<span class="hide">&nbsp;&nbsp;&nbsp;</span><a href="http://envatoelements.createsend1.com/t/n/i-e-20b5aad03de011e7acf71dc55578c9ad-l-b-l-l/" style="color:#505050;text-decoration:underline;" >View in browser</a>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+						</div>
+					</center>
+				</td>
+			</tr>
+		</table>
+		
+		<table width="100%" cellpadding="0" cellspacing="0" align="center" border="0" class="wrapper" bgcolor="#ffffff" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;table-layout:fixed;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;border-collapse:separate;" >
+			<tr>
+				<td align="center">
+					<center>
+						<div class="webkit" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;width:642px;min-width:642px;" >
+							<!--[if (mso)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="640"><tr><td><![endif]-->
+							<table width="100%" cellpadding="0" cellspacing="0" border="0" class="outer" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;width:642px;min-width:642px;" >
+								<tr>
+									<td>
+										
+												<table width="100%" cellpadding="0" cellspacing="0" border="0" class="layout-solologo" align="center">
+													<tr class="one-col">
+														<td class="inner" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;" >
+															<table width="100%" border="0" cellpadding="0" cellspacing="0">
+																<tr>
+																	<td class="inner-nested" style="padding-top:55px;padding-bottom:60px;padding-right:35px;padding-left:35px;" >
+																		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="contents" style="color:#505050;font-family:'Open Sans', sans-serif;text-align:center;font-size:16px;line-height:26px;" >
+																			<tr>
+																				<td class="logo" style="font-weight:bold;font-size:18px;color:#81b441;" >
+																					<img label="logo" src="https://i7.createsend1.com/ti/i/E8/332/576/131001//images/logo.png" alt="envato&#32;elements" width="215" style="border-width:0;height:auto;" />
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											
+												<table width="100%" cellpadding="0" cellspacing="0" border="0" class="layout-hero" align="center">
+													<tr class="one-col">
+														<td class="inner" style="padding-left:20px;padding-right:20px;padding-bottom:20px;" >
+															<table width="100%" border="0" cellpadding="0" cellspacing="0" class="contents card" style="-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background-color:#ffffff;box-shadow:0px 5px 22px #dddddd;-webkit-box-shadow:0px 5px 22px #dddddd;border-width:1px;border-style:solid;border-color:#ededed;overflow:hidden;color:#505050;font-family:'Open Sans', sans-serif;text-align:center;font-size:16px;line-height:26px;" >
+																<tr>
+																	<td class="image round-top" style="-moz-border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;font-size:14px;color:#9d9d9d;" >
+																		<a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-i-r-l/" style="text-decoration:none;color:#959597;" ><img label="image" src="https://i1.createsend1.com/ei/i/59/86E/6BC/csimport/Free-account-onboarding-email-800x300.150459.jpg" width="600" alt="Envato&#32;Elements&#32;beta&#32;launch" height="300" style="border-width:0;height:auto;display:block;-moz-border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;width:100%;max-width:600px;" /></a>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="contents" style="color:#505050;font-family:'Open Sans', sans-serif;text-align:center;font-size:16px;line-height:26px;" >
+																			<tr>
+																				<td class="inner-nested" style="padding-top:55px;padding-bottom:60px;padding-right:35px;padding-left:35px;" >
+																					<p class="h2" style="margin-top:0;margin-right:0;margin-left:0;color:#303030;font-family:'Montserrat', sans-serif;font-size:24px;line-height:26px;font-weight:bold;letter-spacing:-0.01em;margin-bottom:18px;" >Welcome to Envato Elements!</p>
+																					<p style="text-align:left;margin-top:0;margin-right:0;margin-left:0;margin-bottom:6px;" >
+	Hey there, thanks for visiting.</p>
+<p style="text-align:left;margin-top:0;margin-right:0;margin-left:0;margin-bottom:6px;" >
+	Your new free account lets you browse all items on our site and see full details about each. Remember, fresh content is added all the time by our community of independent designers, so check back often...</p>
+<p style="text-align:left;margin-top:0;margin-right:0;margin-left:0;margin-bottom:6px;" >
+	If you like what you see, we invite you to consider the advantages of becoming a <a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-d-r-l/" style="text-decoration:none;color:#505050;" >paying subscriber</a> to Envato Elements.</p>
+<p style="text-align:left;margin-top:0;margin-right:0;margin-left:0;margin-bottom:6px;" >
+	For now, we hope you enjoy browsing the website and connecting with the Elements community on <a href="https://medium.com/@EnvatoElements?utm_medium=email&amp;utm_campaign=elements_email_sys_onboarding_freeaccount&amp;utm_content=link" style="text-decoration:underline;color:#505050;" >Medium</a>, <a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-h-r-l/" style="text-decoration:underline;color:#505050;" >Pinterest</a>, and <a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-k-r-l/" style="text-decoration:underline;color:#505050;" >Twitter</a>.</p>
+																					<div class="spacer" style="font-size:20px;line-height:20px;display:block;color:#ffffff;text-align:center;" >&nbsp;</div>
+																					<table class="buttonwrapper" border="0" cellpadding="0" cellspacing="0" style="font-family:'Montserrat', sans-serif;background-color:#f94b71;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;overflow:hidden;font-size:16px;line-height:18px;font-weight:bold;" >
+																						<tr>
+																							<td class="button">
+																								<a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-u-r-l/" style="-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border-top-width:10px;border-top-style:solid;border-top-color:#f94b71;border-bottom-width:10px;border-bottom-style:solid;border-bottom-color:#f94b71;border-left-width:40px;border-left-style:solid;border-left-color:#f94b71;border-right-width:40px;border-right-style:solid;border-right-color:#f94b71;color:#ffffff;font-size:12px;line-height:14px;display:inline-block;font-weight:bold;text-align:center;text-transform:uppercase;text-decoration:none;" >Browse Items</a>
+																							</td>
+																						</tr>
+																					</table>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											
+										
+										<table cellpadding="0" cellspacing="0" border="0" class="contents layout-footer" align="center" style="font-family:'Open Sans', sans-serif;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;text-align:center;font-size:12px;line-height:19px;color:#303030;" >
+											<tr class="one-col">
+												<td class="inner" style="padding-top:45px;padding-bottom:45px;padding-right:45px;padding-left:45px;" >
+													<img label="footer logo" src="https://i2.createsend1.com/ti/i/E8/332/576/131001//images/brandmark.png" width="29" style="border-width:0;height:auto;" />
+													<div class="spacer" style="font-size:20px;line-height:20px;display:block;color:#ffffff;text-align:center;" >&nbsp;</div>
+													<p class="semibold" style="margin-top:0;margin-right:0;margin-left:0;margin-bottom:30px;" ><em>You're receiving this because you created a free account on Envato Elements <br>
+(or your Envato account was auto-upgraded because you were signed in when visiting).</em></p>
+													<div class="description">Envato Elements Pty Ltd (ABN: 87 613 824 258) <br>
+121 King Street, Melbourne VIC 3000 Australia<br>
+<a href="http://envatoelements.createsend1.com/t/n/i-l-20b5aad03de011e7acf71dc55578c9ad-l-o-r-l/" style="color:#505050;text-decoration:underline;" >Privacy Policy</a><br />
+</div>
+													<p class="hrefs" style="margin-top:0;margin-right:0;margin-left:0;margin-bottom:30px;color:#7c7c7d;" > &nbsp;&bull;&nbsp; </p>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+						</div>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</div>
+<img src="https://envatoelements.createsend1.com/t/n/i-o-20b5aad03de011e7acf71dc55578c9ad-l-l/o.gif"  width="1" height="1" border="0" alt="" style="visibility:hidden !important;display:block !important;height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;" /></body>
+</html>

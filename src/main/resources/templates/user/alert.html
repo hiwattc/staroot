@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+</head>
+<body>
+	{{> /include/navigation }}
+	<div class="container">
+		<h1>Alert</h1>
+
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<caption>Optional table caption.</caption>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Contents</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#msgList}}
+					<tr>
+						<td>{{msgId}}</td>
+						<td>{{msgTitle}}</td>
+					</tr>
+					{{/msgList}}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</body>
+</html>

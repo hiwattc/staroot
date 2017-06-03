@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+</head>
+<body>
+	{{> /include/navigation }}
+	<div class="container">
+		<h1>Register</h1>
+		<form action="/user/register" method="POST">
+			<div class="form-group">
+				<label for="userId">UserId</label> <input type="text"
+					class="form-control" name="userId" placeholder="UserId">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" name="password" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text" class="form-control"
+					name="name" placeholder="Name">
+			</div>
+			<div class="form-group">
+				<label for="email">E-Mail</label> <input type="text"
+					class="form-control" name="email" placeholder="E-Mail">
+			</div>
+			<button type="submit" class="btn btn-default">Register</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+</head>
+<body>
+	{{> /include/navigation }}
+	<div class="container">
+		<h1>Member</h1>
+
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<caption>Optional table caption.</caption>
+				<thead>
+					<tr>
+						<th>UserId</th>
+						<th>Name</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#users}}
+					<tr>
+						<td>{{userId}}</td>
+						<td>{{name}}</td>
+						<td>{{email}}</td>
+					</tr>
+					{{/users}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
