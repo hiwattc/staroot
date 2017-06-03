@@ -4,8 +4,14 @@
 </head>
 <body>
 	{{> /include/navigation }}
+	
+	
 	<div class="container">
 		<h1>Login</h1>
+	{{#loginFailCnt}}
+	<span class="label label-danger">Login Failed! Try Again!</span>&nbsp;&nbsp;
+	<span class="label label-danger">{{loginFailCnt}}</span>
+	{{/loginFailCnt}}
 		<form action="/user/login" method="POST">
 			<div class="form-group">
 				<label for="userId">UserId</label> <input type="text"

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,20 +15,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.staroot.domain.Message;
 import com.staroot.domain.User;
+import com.staroot.domain.UserRepository;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	List<User> users = new ArrayList<User>();
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@GetMapping("/login")
-	public String login(String userid, String password, HttpSession session) {
+	public String login() {
 		return "/user/login";
+	}
+	@PostMapping("/login")
+	public String login(String userId, String password, HttpSession session) {
+		int loginFailCnt = 0;
+		if(session.getAttribute("loginFailCnt") != null){
+			loginFailCnt = (int) session.getAttribute("loginFailCnt");
+		}
+		User user = userRepository.findByUserId(userId);
+		if(user == null){
+			loginFailCnt = loginFailCnt+1;
+			System.out.println("Login Fail!(User doesn't exists!)");
+			session.setAttribute("loginFailCnt", loginFailCnt);
+			return "redirect:/user/login";
+		}
+		
+		if(!password.equals(user.getPassword())){
+			loginFailCnt = loginFailCnt+1;
+			System.out.println("Login Fail!(User's Password doesn't match!)");
+			session.setAttribute("loginFailCnt", loginFailCnt);
+			return "redirect:/user/login";
+		}
+		
+		System.out.println("Login Success!");
+		session.removeAttribute("loginFailCnt");
+		session.setAttribute("user", user);
+		
+		return "redirect:/";
 	}
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("loginFailCnt");
 		return "/user/login";
 	}
 
@@ -37,25 +71,30 @@ public class UserController {
 
 	@PostMapping("/register")
 	public String register(User user) {
-		System.out.println(user.getUserId());
-		System.out.println(user.getPassword());
-		System.out.println(user.getName());
-		System.out.println(user.getEmail());
-		users.add(user);
+		System.out.println(user.toString());
+		userRepository.save(user);
 		return "redirect:/user/member";
+
+	}
+	@GetMapping("/profile")
+	public String profile(HttpSession session) {
+		return "/user/profile";
+	}
+
+	@PostMapping("/update")
+	public String update(User user, HttpSession session) {
+		System.out.println(user.toString());
+		User sessionUser = (User) session.getAttribute("user");
+		sessionUser.update(user);
+		userRepository.save(sessionUser);
+		return "redirect:/";
 
 	}
 
 	@RequestMapping("/member")
 	public String list(Model model) {
-		//List<User> users = new ArrayList<User>();
-
-		User user1 = new User();
-		user1.setUserId("starootmaster");
-		user1.setPassword("pass123");
-		user1.setName("starootmaster");
-		user1.setEmail("starootmaster@gmail.com");
-		users.add(user1);
+		List<User> users = new ArrayList<User>();
+		users = userRepository.findAll();
 		model.addAttribute("users", users);
 
 		return "/user/member";

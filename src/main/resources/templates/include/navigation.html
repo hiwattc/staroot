@@ -17,11 +17,16 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/user/alert">Alert<span class="badge">42</span></a></li>
+			{{^user}}
 				<li><a href="/user/login">Login</a></li>
-				<li><a href="/user/logout">Logout</a></li>
 				<li><a href="/user/register">Register</a></li>
+			{{/user}}
+ 			{{#user}}
+				<li><a href="/user/alert">Alert&nbsp;<span class="badge">42</span></a></li>
+				<li><a href="/user/profile"><span class="badge">&nbsp;{{name}}</span></a></li>
 				<li><a href="/user/member">Members</a></li>
+				<li><a href="/user/logout">Logout</a></li>
+ 			{{/user}}
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
