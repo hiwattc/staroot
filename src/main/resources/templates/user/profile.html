@@ -7,7 +7,7 @@
 	{{> /include/navigation }}
 	<div class="container">
 		<h1>Modify</h1>
-		{{#user}}
+		{{#sessionUser}}
 		<form action="/user/update" method="POST">
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
@@ -21,9 +21,9 @@
 				<label for="email">E-Mail</label> <input type="text"
 					class="form-control" name="email" placeholder="E-Mail" value="{{email}}">
 			</div>
-			<button type="submit" class="btn btn-primary">Update</button>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
 		</form>
-		{{/user}}
+		{{/sessionUser}}
 	</div>
 </body>
 </html>

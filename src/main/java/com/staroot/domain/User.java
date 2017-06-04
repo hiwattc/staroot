@@ -60,6 +60,13 @@ public class User {
 	    this.password = user.getPassword();
 	}
 	
+	public boolean matchPassword(String inputPassword){
+		if(inputPassword == null){
+			return false;
+		}
+		return inputPassword.equals(this.password);
+	}
+	
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";
