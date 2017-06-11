@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+</head>
+<body>
+	{{> /include/navigation }}
+	<div class="container">
+		<h1>Create Board</h1>
+		<form action="/board/create" method="POST">
+			<div class="form-group">
+				<label for="title">Title</label> <input type="text"
+					class="form-control" name="title" placeholder="title" >
+			</div>
+			<div class="form-group">
+  				<label for="contents">Contents</label> 
+		    	<textarea class="form-control" rows="3" name="contents" placeholder="contents"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Create</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -31,7 +31,8 @@ public class LoginCheckFilter implements Filter {
 					request.getRequestURI().startsWith("/user/register") ||
 					request.getRequestURI().startsWith("/images") ||
 					request.getRequestURI().startsWith("/h2") ||
-					request.getRequestURI().startsWith("/webjars")
+					request.getRequestURI().startsWith("/webjars") ||
+					request.getRequestURI().startsWith("/board/list")
 					){
 				//DO NOT LoginCheck
 				System.out.println("Login check ignored::"+request.getRequestURI());

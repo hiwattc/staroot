@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{{> /include/header }}
+</head>
+<body>
+	{{> /include/navigation }} {{#boardDetail}}
+	<div class="container">
+		<h1>Board Detail</h1>
+				<blockquote>
+					<p>{{title}}</p>
+					<footer>
+						{{{contents}}}</cite>
+					</footer>
+				</blockquote>
+		<a class="btn btn-primary" href="/board/modify/{{id}}" role="button">Modify</a>
+<!-- 		<a class="btn btn-primary" href="/board/delete/{{id}}" role="button">Delete</a> -->
+<!-- 		<form action="/board/modify/{{id}}" method="POST"> -->
+<!-- 		    <input type="hidden" name="_method" value="PUT"> -->
+<!-- 			<button type="submit" class="btn btn-primary">Modify</button> -->
+<!-- 		</form> -->
+<!-- 		<form action="/board/delete/{{id}}" method="POST"> -->
+<!-- 		    <input type="hidden" name="_method" value="DELETE"> -->
+<!-- 			<button type="submit" class="btn btn-primary">Delete</button> -->
+<!-- 		</form> -->
+
+		<form action="/board/{{id}}/reply/create" method="POST">
+			<div class="form-group">
+				<label for="contents">Reply</label>
+				<textarea class="form-control" rows="3" name="reply"
+					placeholder="reply"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>
+	{{/boardDetail}}
+	<div class="container">
+		<h1>BOARD</h1>
+
+		<div class="table-responsive">
+
+			<a class="btn btn-primary" href="/board/createForm"
+				role="button">Write</a>
+			<table class="table table-hover">
+				<!-- 				<caption>Optional table caption.</caption> -->
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>title</th>
+						<th>writer</th>
+						<th>createDate</th>
+						<th>modifyDate</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#boardList}}
+					<tr onclick="location.href='/board/list/{{id}}';"
+						style="cursor: pointer;">
+						<td>{{id}}</td>
+						<td>{{title}}</td>
+						<td>{{writer.userId}}</td>
+						<td>{{FormattedCreateDate}}</td>
+						<td>{{FormattedModifyDate}}</td>
+					</tr>
+					{{/boardList}}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</body>
+</html>
