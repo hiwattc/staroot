@@ -3,7 +3,8 @@
 <head>{{> /include/header }}
 </head>
 <body>
-	{{> /include/navigation }} {{#boardDetail}}
+	{{> /include/navigation }} 
+	{{#boardDetail}}
 	<div class="container">
 		<h1>Board Detail</h1>
 				<blockquote>
@@ -23,16 +24,38 @@
 <!-- 			<button type="submit" class="btn btn-primary">Delete</button> -->
 <!-- 		</form> -->
 
-		<form action="/board/{{id}}/reply/create" method="POST">
+
+
+
+
+
+	{{#reply}}
+			<div>
+				<div class="media">
+					<div class="media-left">
+						<img src="/images/img_avatar1.png" class="media-object"
+							style="width: 45px">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
+						</h4>
+						<p>{{contents}}</p>
+				</div>
+			</div>
+	{{/reply}}
+
+		<form class="reply-write" action="/api/board/{{id}}/reply/create" method="POST">
 			<div class="form-group">
 				<label for="contents">Reply</label>
-				<textarea class="form-control" rows="3" name="reply"
+				<textarea class="form-control" rows="3" name="contents"
 					placeholder="reply"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary">Save</button>
+			<button type="submit" class="btn btn-primary">Save Reply</button>
 		</form>
-	</div>
 	{{/boardDetail}}
+
+	</div>
 	<div class="container">
 		<h1>BOARD</h1>
 
@@ -68,4 +91,5 @@
 
 	</div>
 </body>
+{{> /include/footer }}
 </html>

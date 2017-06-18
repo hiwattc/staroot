@@ -36,6 +36,7 @@ public class LoginCheckFilter implements Filter {
 					){
 				//DO NOT LoginCheck
 				System.out.println("Login check ignored::"+request.getRequestURI());
+			    chain.doFilter(req, res);
 			}else{
 		    	System.out.println("=========================request.getRequestURI().startsWith(/user/member)======");
 				//System.out.println(":::TestFilter doFilter() called");
@@ -48,7 +49,7 @@ public class LoginCheckFilter implements Filter {
 				//getLocalAddr - Returns the IP address of the interface on which the request was received.		  
 				//System.out.println("req.getScheme()::"+req.getScheme());
 		    	
-			    response.setHeader(X_HEADER_TEST, "STAROOT HIWATT");
+			    //response.setHeader(X_HEADER_TEST, "STAROOT HIWATT");
 				System.out.println("req.getRemoteAddr()::"+req.getRemoteAddr());
 				System.out.println("req.getCharacterEncoding()::"+req.getCharacterEncoding());
 			    HttpSession session = request.getSession(false);
@@ -57,17 +58,18 @@ public class LoginCheckFilter implements Filter {
 				    if(user != null){
 						System.out.println("Login requred!::"+request.getRequestURI());
 				    	System.out.println("Login User ::"+user.toString());
+					    chain.doFilter(req, res);
 				    }else{
 						System.out.println("Login requred!::"+request.getRequestURI());
 				    	System.out.println("Session exists! But Not Logined yet!");
 				    	response.sendRedirect("/user/login");
 				    }
 			    }else{
+					System.out.println("Login requred!::"+request.getRequestURI());
 			    	System.out.println("Session doesn't exists! And Not Logined yet!");
 			    	response.sendRedirect("/user/login");
 			    }
 			}
-	    chain.doFilter(req, res);
 	  }
 
 	  @Override

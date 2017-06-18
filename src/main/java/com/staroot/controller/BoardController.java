@@ -32,8 +32,11 @@ public class BoardController {
 	@GetMapping("/list")
 	public String boardList(Model model) {
 		List<Board> baards = new ArrayList<Board>();
+		System.out.println("1-11111111111111111111111111111");
 		baards = boardRepository.findAll();
+		System.out.println("1-22222222222222222222222222222");
 		model.addAttribute("boardList", baards);
+		System.out.println("1-3333333333333333333333333333");
 		return "/board/list";
 	}
 	@GetMapping("/list/{id}")
@@ -43,8 +46,11 @@ public class BoardController {
 		model.addAttribute("boardList", baards);
 		
 		Board board = new Board();
+		System.out.println("2-11111111111111111111111111111");
 		board = boardRepository.findOne(id);
+		System.out.println("2-22222222222222222222222222222");
 		model.addAttribute("boardDetail", board);
+		System.out.println("2-3333333333333333333333333333");
 		
 		return "/board/list";
 	}
