@@ -31,7 +31,7 @@ public class ReplyController {
 		if(writer == null){
 			return "redirect:/user/login";
 		}
-		Board board = boardRepository.findOne(boardId);
+		Board board = (Board) boardRepository.findOne(boardId);
 		Reply reply = new Reply(writer,board, contents);
 	    replyRepository.save(reply);
 		return String.format("redirect:/board/list/%d", boardId);

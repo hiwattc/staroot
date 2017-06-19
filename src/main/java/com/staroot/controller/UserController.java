@@ -1,11 +1,14 @@
 package com.staroot.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.staroot.domain.Board;
 import com.staroot.domain.Message;
+import com.staroot.domain.MessageRepository;
 import com.staroot.domain.User;
 import com.staroot.domain.UserRepository;
 import com.staroot.util.web.HttpSessionUtil;
@@ -26,6 +31,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private MessageRepository messageRepository;
+	
 	@GetMapping("/login")
 	public String login() {
 		return "/user/login";
@@ -111,24 +119,35 @@ public class UserController {
 		return "/user/member";
 	}
 	
+	
 	@GetMapping("/alert")
 	public String msgList(Model model) {
 		List<Message> msgList = new ArrayList<Message>();
-		Message msg1 = new Message();
-		Message msg2 = new Message();
-		Message msg3 = new Message();
-		msg1.setMsgId("1");
-		msg1.setMsgTitle("Hello");
-		msgList.add(msg1);
-
-		msg2.setMsgId("2");
-		msg2.setMsgTitle("Hello");
-		msgList.add(msg2);
-
-		msg3.setMsgId("3");
-		msg3.setMsgTitle("Hello");
-		msgList.add(msg3);
-
+		
+		//msgList = messageRepository.getMsgLists();
+		//msgList = messageRepository.findAll(); //(arg0, arg1);
+		//msgList = messageRepository.findAll();//잘됨
+		//msgList = messageRepository.findAllByOrderByIdDesc();//잘됨 
+		//msgList = messageRepository.findTop2ByOrderByIdDesc();//잘됨 
+		//msgList = messageRepository.findAll(Pageable a)
+		Page<Message> messages = messageRepository.findAll(new PageRequest(0, 5)); //int page, int size 
+		
+		System.out.println("messages.getSize():" + messages.getSize());
+		System.out.println("messages.getTotalElements():" + messages.getTotalElements());
+		System.out.println("messages.getTotalPages():" + messages.getTotalPages());
+		System.out.println("messages.getSize():" + messages.getSize());
+		System.out.println("messages.getNumber():" + messages.getNumber());
+		System.out.println("messages.getNumberOfElements():" + messages.getNumberOfElements());		
+		msgList = messages.getContent();
+		System.out.println("msgList.size():"+msgList.size());
+		System.out.println("msgList.toString():"+msgList.toString());
+		
+		for (Iterator iterator = msgList.iterator(); iterator.hasNext();) {
+			Message message = (Message) iterator.next();
+			System.out.println("message :::"+ message.getMsgTitle());
+			
+		}
+		
 		model.addAttribute("msgList", msgList);
 		return "/user/alert";
 

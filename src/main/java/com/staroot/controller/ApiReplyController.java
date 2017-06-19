@@ -33,7 +33,7 @@ public class ApiReplyController {
 		if(writer == null){
 			return null;
 		}
-		Board board = boardRepository.findOne(boardId);
+		Board board = (Board) boardRepository.findOne(boardId);
 		Reply reply = new Reply(writer,board, contents);
 	    
 		return replyRepository.save(reply);
