@@ -25,7 +25,7 @@ public class Board {
 	private String contents;
 	
 	@OneToMany(mappedBy="board")
-	@OrderBy("id ASC")
+	@OrderBy("id DESC")
 	private List<Reply> reply;
 	
 	
@@ -51,14 +51,14 @@ public class Board {
 		if(createDate == null){
 			return "";
 		}
-		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
+		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
 	}
 
 	public String getFormattedModifyDate(){
 		if(modifyDate == null){
 			return "";
 		}
-		return modifyDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
+		return modifyDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
 	}
 
 	public String getTitle() {

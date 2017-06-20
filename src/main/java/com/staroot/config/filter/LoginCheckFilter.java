@@ -27,6 +27,7 @@ public class LoginCheckFilter implements Filter {
 			//security area session check
 			if(
 					request.getRequestURI().equals("/") ||
+					request.getRequestURI().startsWith("/api/users") ||
 					request.getRequestURI().startsWith("/user/login") ||
 					request.getRequestURI().startsWith("/user/register") ||
 					request.getRequestURI().startsWith("/images") ||

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Reply {
 	@Id
@@ -19,6 +21,7 @@ public class Reply {
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_reply_writer"))
+	@JsonProperty
 	private User writer;
 	
 	@ManyToOne
@@ -26,6 +29,7 @@ public class Reply {
 	private Board board;
 	
 	@Lob
+	@JsonProperty
 	private String contents;
 	
 	

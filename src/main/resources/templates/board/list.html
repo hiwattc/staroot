@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>{{> /include/header }}
 </head>
 <body>
@@ -29,8 +28,8 @@
 
 
 
+			<div class="reply-list">
 	{{#reply}}
-			<div>
 				<div class="media">
 					<div class="media-left">
 						<img src="/images/img_avatar1.png" class="media-object"
@@ -42,8 +41,12 @@
 						</h4>
 						<p>{{contents}}</p>
 				</div>
-			</div>
 	{{/reply}}
+			</div>
+
+
+
+
 
 		<form class="reply-write" action="/api/board/{{id}}/reply/create" method="POST">
 			<div class="form-group">
@@ -71,7 +74,6 @@
 						<th>title</th>
 						<th>writer</th>
 						<th>createDate</th>
-						<th>modifyDate</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,7 +84,6 @@
 						<td>{{title}}</td>
 						<td>{{writer.userId}}</td>
 						<td>{{FormattedCreateDate}}</td>
-						<td>{{FormattedModifyDate}}</td>
 					</tr>
 					{{/boardList}}
 				</tbody>
@@ -92,4 +93,22 @@
 	</div>
 </body>
 {{> /include/footer }}
+
+
+<script type="text/template" id="replyTemplate">
+			<div>
+				<div class="media">
+					<div class="media-left">
+						<img src="/images/img_avatar1.png" class="media-object"
+							style="width: 45px">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+							{0} <small><i>Posted on {1}</i></small>
+						</h4>
+						<p>{2}</p>
+				</div>
+			</div>
+</script>
 </html>
+
