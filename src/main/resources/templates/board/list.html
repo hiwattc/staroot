@@ -12,7 +12,10 @@
 						{{{contents}}}</cite>
 					</footer>
 				</blockquote>
-		<a class="btn btn-primary" href="/board/modify/{{id}}" role="button">Modify</a>
+		<br>		
+		<br>		
+		<br>		
+		<a class="btn btn-primary  btn-lg btn-block" href="/board/modify/{{id}}" role="button">Modify</a>
 <!-- 		<a class="btn btn-primary" href="/board/delete/{{id}}" role="button">Delete</a> -->
 <!-- 		<form action="/board/modify/{{id}}" method="POST"> -->
 <!-- 		    <input type="hidden" name="_method" value="PUT"> -->
@@ -22,56 +25,41 @@
 <!-- 		    <input type="hidden" name="_method" value="DELETE"> -->
 <!-- 			<button type="submit" class="btn btn-primary">Delete</button> -->
 <!-- 		</form> -->
-
-
-
-
-
-
+            <br>
+            <br>
+            <br>
 			<div class="reply-list">
-	{{#reply}}
-				<div class="media">
-					<div class="media-left">
-						<img src="/images/img_avatar1.png" class="media-object"
-							style="width: 45px">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">
-							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
-						</h4>
-						<p>{{contents}}</p>
-				</div>
-	{{/reply}}
+			{{#reply}}
+						<div class="media">
+							<div class="media-left">
+								<img src="/images/img_avatar1.png" class="media-object"
+									style="width: 45px">
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">
+									{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
+								</h4>
+								<p>{{contents}}</p>
+						</div>
+			{{/reply}}
 			</div>
-
-
-
-
 
 		<form class="reply-write" action="/api/board/{{id}}/reply/create" method="POST">
 			<div class="form-group">
-				<label for="contents">Reply</label>
 				<textarea class="form-control" rows="3" name="contents"
 					placeholder="reply"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary">Save Reply</button>
+			<button type="submit" class="btn btn-primary  btn-lg btn-block">Save Reply</button>
 		</form>
+	<br>
+	<br>
+	<br>
 	{{/boardDetail}}
-
 	</div>
 	<div class="container">
 <!-- 		<h1>BOARD</h1> -->
 
-		<div class="table-responsive">
-			<div id="rowNumOfPage">
-					<nav aria-label="Page navigation">
-					  <ul class="pagination">
-						{{#rowNumOfPageList}}
-					    <li {{{active}}}><a href="/board/list?selPageSize={{rowNumOfPage}}">{{rowNumText}}</a></li>
-						{{/rowNumOfPageList}}
-					  </ul>
-					</nav>
-			</div>
+		<div >
 			<table class="table table-hover">
 				<!-- 				<caption>Optional table caption.</caption> -->
 				<thead>
@@ -94,8 +82,8 @@
 					{{/boardList}}
 				</tbody>
 			</table>
-			<a class="btn btn-primary" href="/board/createForm"
-				role="button">Write</a>
+			<a class="btn btn-primary btn-lg btn-block" href="/board/createForm" role="button">Write</a>
+			
 			<center>
 			<nav aria-label="Page navigation">
 			  <ul class="pagination pagination-lg">
@@ -105,6 +93,16 @@
 			    </li>
 			  </ul>
 			</nav>
+			<div id="rowNumOfPage">
+					<nav aria-label="Page navigation">
+					  <ul class="pagination">
+						{{#rowNumOfPageList}}
+					    <li {{{active}}}><a href="/board/list?selPageSize={{rowNumOfPage}}">{{rowNumText}}</a></li>
+						{{/rowNumOfPageList}}
+					  </ul>
+					</nav>
+			</div>
+			
 			</center>
 		</div>
 
