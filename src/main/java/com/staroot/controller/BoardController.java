@@ -1,12 +1,18 @@
 package com.staroot.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.staroot.domain.Board;
 import com.staroot.domain.BoardRepository;
+import com.staroot.domain.PageInfo;
 import com.staroot.domain.User;
 import com.staroot.util.web.HttpSessionUtil;
 
@@ -28,32 +35,148 @@ public class BoardController {
 	
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	private int pageSize = 5; //rows Per a page
+	private int pagesPerSection = 5; //page count per section (between prev and next)
+	private String[] rowSizeArry  = {"5","10","30","50","100"};
 
 	@GetMapping("/list")
-	public String boardList(Model model) {
-		List<Board> baards = new ArrayList<Board>();
-		System.out.println("1-11111111111111111111111111111");
-		baards = boardRepository.findAll();
-		System.out.println("1-22222222222222222222222222222");
-		model.addAttribute("boardList", baards);
-		System.out.println("1-3333333333333333333333333333");
+	public String boardList(String selPageNo, String selPageSize, Model model) {
+		makeBoardInfoModel(selPageNo, selPageSize, model);
+		
 		return "/board/list";
 	}
+	
 	@GetMapping("/list/{id}")
-	public String boardListAndDetail(@PathVariable Long id, Model model) {
-		List<Board> baards = new ArrayList<Board>();
-		baards = boardRepository.findAll();
-		model.addAttribute("boardList", baards);
-		
+	public String boardListAndDetail(@PathVariable Long id, String selPageNo, String selPageSize, Model model) {
+		makeBoardInfoModel(selPageNo, selPageSize, model);
+		//게시판상세정보조회 
+		//---------------------------------------------------------------
 		Board board = new Board();
-		System.out.println("2-11111111111111111111111111111");
 		board = boardRepository.findOne(id);
-		System.out.println("2-22222222222222222222222222222");
 		model.addAttribute("boardDetail", board);
-		System.out.println("2-3333333333333333333333333333");
-		
+		//---------------------------------------------------------------
 		return "/board/list";
 	}
+	
+
+	private void makeBoardInfoModel(String selPageNo, String selPageSize, Model model) {
+		List<Board> baards = new ArrayList<Board>();
+		List<PageInfo> pageInfoList = new ArrayList<PageInfo>();
+
+		//select tag for pageSize 
+		List<Map<String,String>> rowNumOfPageList = new ArrayList<Map<String,String>>();
+		getSelRowNumList(selPageSize, rowNumOfPageList);
+		
+		//baards = boardRepository.findAll();
+		if(selPageSize != null){
+			pageSize = Integer.parseInt(selPageSize);
+			if(pageSize > 100){
+				pageSize = 100;
+			}
+		}
+		if(selPageNo == null)	selPageNo = "1";
+		int selectedPageNum = Integer.parseInt(selPageNo);
+		Page<Board> page = boardRepository.findAll(
+				new PageRequest(selectedPageNum-1
+						, pageSize
+						, new Sort(new Order(Direction.DESC,"id"))
+						)); //int page, int size 
+
+		//paging 정보처리
+		//---------------------------------------------------------------
+		baards = page.getContent();
+		int totalPages = page.getTotalPages();
+		pageInfoList = getPageInfoList(pageInfoList, selectedPageNum, totalPages);
+		//---------------------------------------------------------------
+
+		model.addAttribute("boardList", baards);
+		model.addAttribute("pageInfoList", pageInfoList);
+		model.addAttribute("rowNumOfPageList", rowNumOfPageList);
+	}
+
+	
+	//게시판 페이징처리관련 (17.06.23)
+	//TODO
+	//01. Prev, Next 버튼처리
+	//  a) pageInfoList를 감싸는 map 또는 list생성해서 list.html과 연계
+	//  b) prev, next 도 java단에서 렌더링해서 던져주는 방법
+	
+	private List<PageInfo> getPageInfoList(List<PageInfo> pageInfoList, int selectedPageNum, int totalPages) {
+		//selected page
+		//secion
+		
+		//how many section
+		int totalSection =  0;
+		int selectedSection = 0;
+		
+		
+		totalSection = totalPages / pagesPerSection + 1 ;
+		System.out.println("totalPages : "+totalPages);
+		System.out.println("pagesPerSection : "+pagesPerSection);
+		System.out.println("totalSection : "+totalSection);
+		
+		//6 / (5)  = 1
+		//11 / (5) = 1
+		//10 / (5+1) = 1		
+		selectedSection = (selectedPageNum-1) / (pagesPerSection);
+		int startPageNoOfSection = selectedSection*(pagesPerSection);
+		int endPageNoOfSection   = startPageNoOfSection + pagesPerSection;
+		
+		PageInfo pageInfo;
+		
+		//Previous Button
+		if(startPageNoOfSection - 1 > 0){
+			pageInfo = new PageInfo();
+			pageInfo.setSelPageNo(startPageNoOfSection - 1);
+			pageInfo.setPageText("<span aria-hidden='true'>&laquo;</span>");
+			pageInfo.setActive("");
+			pageInfo.setPageSize(pageSize);
+			pageInfoList.add(pageInfo);
+		}
+		
+		for(int i=startPageNoOfSection ;i<endPageNoOfSection;i++){
+			if(i < totalPages){
+				pageInfo = new PageInfo();
+				pageInfo.setSelPageNo(i+1);
+				pageInfo.setPageText(Integer.toString(i+1));
+				if(selectedPageNum == i+1){
+				    pageInfo.setActive("class='active'");
+				}else{
+					pageInfo.setActive("");
+				}
+				pageInfo.setPageSize(pageSize);
+				pageInfoList.add(pageInfo);
+			}
+		}
+		
+		//Next Button
+		if(endPageNoOfSection < totalPages){
+			pageInfo = new PageInfo();
+			pageInfo.setSelPageNo(endPageNoOfSection + 1);
+			pageInfo.setPageText("<span aria-hidden='true'>&raquo;</span>");
+			pageInfo.setActive("");
+			pageInfo.setPageSize(pageSize);
+			pageInfoList.add(pageInfo);
+		}
+		
+		return pageInfoList;
+	}
+	private void getSelRowNumList(String selPageSize, List<Map<String, String>> rowNumOfPageList) {
+		Map<String,String> rowMap;
+		for (int i=0 ; i < rowSizeArry.length ; i++){
+			rowMap = new HashMap<String,String>(); 
+			if(rowSizeArry[i].equals(selPageSize)){
+				rowMap.put("active", "class='active'");
+			}else{
+				rowMap.put("active", "");
+			}
+			rowMap.put("rowNumOfPage", rowSizeArry[i]);
+			rowMap.put("rowNumText", rowSizeArry[i]);
+			rowNumOfPageList.add(rowMap);
+		}
+	}
+	
 	@GetMapping("/createForm")
 	public String boardCreateForm() {
 		return "/board/createForm";

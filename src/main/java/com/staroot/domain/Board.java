@@ -17,7 +17,7 @@ import javax.persistence.OrderBy;
 public class Board {
 	@Id
 	@GeneratedValue
-	//@OrderBy("id DESC")
+	//@OrderBy("id DESC") //잘안됨 
 	private Long id; 
 	private String title;
 	
