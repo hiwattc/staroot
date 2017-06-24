@@ -104,8 +104,11 @@ public class Board {
 		this.contents = contents;
 	}
 	
-	public int getReplyCounts() {
-		return reply.size();
+	public String getReplyCounts() {
+		if (reply.size() == 0)
+			return null;
+		
+		return Integer.toString(reply.size());
 	}
 
 }

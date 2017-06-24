@@ -8,74 +8,46 @@
 		<!-- 		<h1>MAIN</h1> -->
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-6">
-				<h2>News</h2>
-				<p>You can see hot news</p>
+				<h2>Recently Boards (1)</h2>
 				<br>
-				<blockquote>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Integer posuere erat a ante.</p>
-					<footer>
-						Someone famous in <cite title="Source Title">Source Title</cite>
-					</footer>
-				</blockquote>
-				<blockquote>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Integer posuere erat a ante.</p>
-					<footer>
-						Someone famous in <cite title="Source Title">Source Title</cite>
-					</footer>
-				</blockquote>
-				<blockquote>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Integer posuere erat a ante.</p>
-					<footer>
-						Someone famous in <cite title="Source Title">Source Title</cite>
-					</footer>
-				</blockquote>
+				{{#boardList}}
+					<div class="list-group">
+					  <a href="/board/list/{{id}}" class="list-group-item">
+					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;
+						    {{#replyCounts}}
+						    <span class="glyphicon glyphicon-user"></span>
+						    <span class="badge">{{replyCounts}}</span>
+						    {{/replyCounts}}
+					    </h4>
+<!-- 					    <p class="list-group-item-text">{{{contents}}} -->
+					    </p>
+						<h5 class="media-heading">
+							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
+						</h5>
+					  </a>
+					</div>					
+				{{/boardList}}
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
-				<h2>Member</h2>
-				<p>You can see Member</p>
+				<h2>Oldest Boards (2)</h2>
 				<br>
-				<!-- Left-aligned media object -->
-				<div class="media">
-					<div class="media-left">
-						<img src="https://source.unsplash.com/1600x900/?animals" class="media-object"
-							style="width: 60px">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Left-aligned</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua.</p>
-					</div>
-				</div>
-				<!-- Left-aligned media object -->
-				<div class="media">
-					<div class="media-left">
-						<img src="/images/img_avatar2.png" class="media-object"
-							style="width: 60px">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Left-aligned</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua.</p>
-					</div>
-				</div>
-				<!-- Left-aligned media object -->
-				<div class="media">
-					<div class="media-left">
-						<img src="/images/img_avatar3.png" class="media-object"
-							style="width: 60px">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Left-aligned</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua.</p>
-					</div>
-				</div>
+				{{#boardList2}}
+					<div class="list-group">
+					  <a href="/board/list/{{id}}" class="list-group-item">
+					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;
+						    {{#replyCounts}}
+						    <span class="glyphicon glyphicon-user"></span>
+						    <span class="badge">{{replyCounts}}</span>
+						    {{/replyCounts}}
+					    </h4>
+<!-- 					    <p class="list-group-item-text">{{{contents}}} -->
+					    </p>
+						<h5 class="media-heading">
+							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
+						</h5>
+					  </a>
+					</div>					
+				{{/boardList2}}
 			</div>
 		</div>
 		<div class="row">

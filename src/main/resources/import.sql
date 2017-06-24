@@ -75,6 +75,18 @@ INSERT INTO BOARD (TITLE, CONTENTS, USER_ID, CREATE_DATE, MODIFY_DATE) VALUES('�
 INSERT INTO BOARD (TITLE, CONTENTS, USER_ID, CREATE_DATE, MODIFY_DATE) VALUES('게시물59','게시물내용입니다<br>Hello ','9',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO BOARD (TITLE, CONTENTS, USER_ID, CREATE_DATE, MODIFY_DATE) VALUES('게시물60','게시물내용입니다<br>Hello ','10',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
+
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply1',CURRENT_TIMESTAMP, 60,1);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply2',CURRENT_TIMESTAMP, 60,1);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply3',CURRENT_TIMESTAMP, 60,1);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply4',CURRENT_TIMESTAMP, 59,2);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply5',CURRENT_TIMESTAMP, 59,2);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply6',CURRENT_TIMESTAMP, 58,3);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply7',CURRENT_TIMESTAMP, 53,3);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply8',CURRENT_TIMESTAMP, 53,4);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply9',CURRENT_TIMESTAMP, 51,5);
+insert into REPLY (contents, create_date, board_id, writer_id) values('reply10',CURRENT_TIMESTAMP, 51,6);
+
 INSERT INTO MESSAGE (MSG_ID, MSG_TITLE) VALUES('1','MSG-001');
 INSERT INTO MESSAGE (MSG_ID, MSG_TITLE) VALUES('2','MSG-002');
 INSERT INTO MESSAGE (MSG_ID, MSG_TITLE) VALUES('3','MSG-003');

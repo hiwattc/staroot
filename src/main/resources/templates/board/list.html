@@ -86,7 +86,12 @@
 					{{#boardList}}
 					<div class="list-group">
 					  <a href="/board/list/{{id}}" class="list-group-item">
-					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;<span class="badge">{{replyCounts}}</span></h4>
+					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;
+						    {{#replyCounts}}
+						    <span class="glyphicon glyphicon-user"></span>
+						    <span class="badge">{{replyCounts}}</span>
+						    {{/replyCounts}}
+					    </h4>
 <!-- 					    <p class="list-group-item-text">{{{contents}}} -->
 					    </p>
 						<h5 class="media-heading">
