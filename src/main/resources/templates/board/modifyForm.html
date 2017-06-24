@@ -19,12 +19,12 @@
   				<label for="contents">Contents</label> 
 		    	<textarea class="form-control" rows="3" name="contents" placeholder = "Contents">{{contents}}</textarea>
 			</div>
-    		<a class="btn btn-primary" href="/board/list/{{id}}" role="button">LIST</a>
-			<button type="submit" class="btn btn-primary">SAVE</button>
+    		<a class="btn btn-primary btn-lg btn-block" href="/board/list/{{id}}" role="button">LIST</a><br>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">SAVE</button><br><br><br><br><br><br><br>
 		</form>
 		<form action="/board/modify/{{id}}" method="POST">
 		<input type="hidden" name="_method" value="DELETE" >
-			<button type="submit" class="btn btn-primary">DELETE</button>
+		<button type="submit" class="btn btn-danger btn-lg btn-block">DELETE</button>
 		</form>
 	</div>
 	{{/boardDetail}}
