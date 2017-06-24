@@ -28,7 +28,7 @@ public class HomeController {
 	public String index(Model model) {
 		List<Board> baards = new ArrayList<Board>();
 		Page<Board> page = boardRepository.findAll(
-				new PageRequest(1
+				new PageRequest(0
 						, 3
 						, new Sort(new Order(Direction.DESC,"id"))
 						)); 
