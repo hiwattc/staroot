@@ -26,7 +26,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String index(Model model) {
-		List<Board> baards = new ArrayList<Board>();
+		List<Board> baards = new ArrayList<Board>(); 
 		Page<Board> page = boardRepository.findAll(
 				new PageRequest(0
 						, 3

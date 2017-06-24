@@ -53,7 +53,7 @@ public class User {
 
 	public Long getId() {
 		return id;
-	}
+	}  
 	
 	public void update(User user, String password) {
 	    this.name = user.getName();

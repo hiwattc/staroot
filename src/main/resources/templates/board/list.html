@@ -86,19 +86,19 @@
 					{{#boardList}}
 					<div class="list-group">
 					  <a href="/board/list/{{id}}" class="list-group-item">
-					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;
+					    <h4 class="list-group-item-heading" style="word-wrap: break-word;">{{id}} &nbsp;&nbsp;<div>{{title}}</div>&nbsp;&nbsp;&nbsp;
 						    {{#replyCounts}}
 						    <span class="glyphicon glyphicon-user"></span>
 						    <span class="badge">{{replyCounts}}</span>
 						    {{/replyCounts}}
 					    </h4>
-<!-- 					    <p class="list-group-item-text">{{{contents}}} -->
+<!-- 					    <p class="list-group-item-text">{{{title}}} -->
 					    </p>
 						<h5 class="media-heading">
 							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
 						</h5>
 					  </a>
-					</div>					
+					</div>	
 					{{/boardList}}
 			
 			<a class="btn btn-primary btn-lg btn-block" href="/board/createForm" role="button">Write</a>
@@ -124,7 +124,7 @@
 			
 			</center>
 		</div>
-
+	</div>
 	</div>
 </body>
 {{> /include/footer }}
