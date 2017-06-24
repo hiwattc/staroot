@@ -55,10 +55,12 @@ public class User {
 		return id;
 	}
 	
-	public void update(User user) {
+	public void update(User user, String password) {
 	    this.name = user.getName();
 	    this.email = user.getEmail();
-	    //this.password = user.getPassword();
+	    if(password != null && !password.equals("")){
+		    this.password = password;
+	    }
 	}
 	
 	public boolean matchPassword(String inputPassword){

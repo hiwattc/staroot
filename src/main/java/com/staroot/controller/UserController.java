@@ -101,10 +101,10 @@ public class UserController {
 	}
 
 	@PostMapping("/update")
-	public String update(User user, HttpSession session) {
+	public String update(User user,String password, HttpSession session) {
 		System.out.println(user.toString());
 		User sessionUser = HttpSessionUtil.getUserFromSession(session);
-		sessionUser.update(user);
+		sessionUser.update(user, password);
 		userRepository.save(sessionUser);
 		return "redirect:/";
 
