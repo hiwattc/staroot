@@ -83,6 +83,22 @@ public class BoardController {
 		}
 		//===========================================================================
 
+		//현재 선택된 페이지 유지 
+		//===========================================================================
+		String sessionSelPageNo = (String) session.getAttribute("sessionSelPageNo");
+		if (selPageNo == null){
+			if(sessionSelPageNo != null){
+				selPageNo = sessionSelPageNo;
+			}else{
+				selPageNo = Integer.toString(MIN_PAGE_SIZE);
+				session.setAttribute("sessionSelPageNo", selPageNo);
+			}
+		}else{
+			session.setAttribute("sessionSelPageNo", selPageNo);
+		}
+		//===========================================================================
+		
+		
 		//select tag for pageSize 
 		List<Map<String,String>> rowNumOfPageList = new ArrayList<Map<String,String>>();
 		getSelRowNumList(selPageSize, rowNumOfPageList);
@@ -94,7 +110,7 @@ public class BoardController {
 				pageSize = MAX_PAGE_SIZE;
 			}
 		}
-		if(selPageNo == null)	selPageNo = "1";
+		//if(selPageNo == null)	selPageNo = "1";
 		int selectedPageNum = Integer.parseInt(selPageNo);
 		Page<Board> page = boardRepository.findAll(
 				new PageRequest(selectedPageNum-1
