@@ -60,14 +60,14 @@
 <!-- 		<h1>BOARD</h1> -->
 
 		<div >
+<!-- 
 			<table class="table table-hover">
-				<!-- 				<caption>Optional table caption.</caption> -->
 				<thead>
 					<tr>
-						<th>id</th>
-						<th>title</th>
-						<th>writer</th>
-						<th>createDate</th>
+						<th>NO</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일시</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,6 +82,20 @@
 					{{/boardList}}
 				</tbody>
 			</table>
+ -->			
+					{{#boardList}}
+					<div class="list-group">
+					  <a href="/board/list/{{id}}" class="list-group-item">
+					    <h4 class="list-group-item-heading">{{id}} &nbsp;&nbsp;{{title}}&nbsp;&nbsp;&nbsp;<span class="badge">{{replyCounts}}</span></h4>
+<!-- 					    <p class="list-group-item-text">{{{contents}}} -->
+					    </p>
+						<h5 class="media-heading">
+							{{writer.name}} <small><i>Posted on {{FormattedCreateDate}}</i></small>
+						</h5>
+					  </a>
+					</div>					
+					{{/boardList}}
+			
 			<a class="btn btn-primary btn-lg btn-block" href="/board/createForm" role="button">Write</a>
 			
 			<center>

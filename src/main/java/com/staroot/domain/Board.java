@@ -103,4 +103,9 @@ public class Board {
 		this.title = title;
 		this.contents = contents;
 	}
+	
+	public int getReplyCounts() {
+		return reply.size();
+	}
+
 }
