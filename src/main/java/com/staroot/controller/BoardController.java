@@ -39,17 +39,20 @@ public class BoardController {
 	private int pageSize = 5; //rows Per a page
 	private int pagesPerSection = 5; //page count per section (between prev and next)
 	private String[] rowSizeArry  = {"5","10","30","50","100"};
+	private static final int MIN_PAGE_SIZE = 5;
+	private static final int MAX_PAGE_SIZE = 10;
 
 	@GetMapping("/list")
-	public String boardList(String selPageNo, String selPageSize, Model model) {
-		makeBoardInfoModel(selPageNo, selPageSize, model);
+	public String boardList(String selPageNo, String selPageSize, Model model, HttpSession session) {
+		
+		makeBoardInfoModel(selPageNo, selPageSize, model, session);
 		
 		return "/board/list";
 	}
 	
 	@GetMapping("/list/{id}")
-	public String boardListAndDetail(@PathVariable Long id, String selPageNo, String selPageSize, Model model) {
-		makeBoardInfoModel(selPageNo, selPageSize, model);
+	public String boardListAndDetail(@PathVariable Long id, String selPageNo, String selPageSize, Model model, HttpSession session) {
+		makeBoardInfoModel(selPageNo, selPageSize, model, session);
 		//게시판상세정보조회 
 		//---------------------------------------------------------------
 		Board board = new Board();
@@ -60,9 +63,25 @@ public class BoardController {
 	}
 	
 
-	private void makeBoardInfoModel(String selPageNo, String selPageSize, Model model) {
+	private void makeBoardInfoModel(String selPageNo, String selPageSize, Model model, HttpSession session) {
 		List<Board> baards = new ArrayList<Board>();
 		List<PageInfo> pageInfoList = new ArrayList<PageInfo>();
+		
+		//currentPage, currentSelectRowNum  Session Check
+		//페이지당 보여질 리스트 개수 초기화  
+		//===========================================================================
+		String sessionSelPageSize = (String) session.getAttribute("selPageSize");
+		if (selPageSize == null){
+			if(sessionSelPageSize != null){
+				selPageSize = sessionSelPageSize;
+			}else{
+				selPageSize = Integer.toString(MIN_PAGE_SIZE);
+				session.setAttribute("selPageSize", selPageSize);
+			}
+		}else{
+			session.setAttribute("selPageSize", selPageSize);
+		}
+		//===========================================================================
 
 		//select tag for pageSize 
 		List<Map<String,String>> rowNumOfPageList = new ArrayList<Map<String,String>>();
@@ -71,8 +90,8 @@ public class BoardController {
 		//baards = boardRepository.findAll();
 		if(selPageSize != null){
 			pageSize = Integer.parseInt(selPageSize);
-			if(pageSize > 100){
-				pageSize = 100;
+			if(pageSize > MAX_PAGE_SIZE){
+				pageSize = MAX_PAGE_SIZE;
 			}
 		}
 		if(selPageNo == null)	selPageNo = "1";
