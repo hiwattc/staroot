@@ -33,7 +33,8 @@ public class LoginCheckFilter implements Filter {
 					request.getRequestURI().startsWith("/images") ||
 					request.getRequestURI().startsWith("/h2") ||
 					request.getRequestURI().startsWith("/webjars") ||
-					request.getRequestURI().startsWith("/board/list")
+					request.getRequestURI().startsWith("/board/list") ||
+					request.getRequestURI().startsWith("/board/file")
 					){
 				//DO NOT LoginCheck
 				System.out.println("Login check ignored::"+request.getRequestURI());

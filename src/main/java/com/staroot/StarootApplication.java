@@ -5,13 +5,18 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = {starootApplication.BASE_PACKAGES})
+
+
+
+@SpringBootApplication(scanBasePackages = {StarootApplication.BASE_PACKAGES})
 @EnableAutoConfiguration
 @EnableTransactionManagement
-public class starootApplication {
+public class StarootApplication {
 	public static final String BASE_PACKAGES = "com.staroot";
+	public static String UPLOAD_DIR = "/staroot_upload_dir";
+	public static String UPLOAD_DIR_PATH;
 
 	public static void main(String[] args) {
-		SpringApplication.run(starootApplication.class, args);
+		SpringApplication.run(StarootApplication.class, args);
 	}
 }

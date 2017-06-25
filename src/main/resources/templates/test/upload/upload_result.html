@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div>
+    {{#message}}
+    <h2 {{message}}/>
+    {{/message}}
+</div>
+
+<div>
+    <ul>
+    {{#files}}
+        <li>{{files}}</li>
+    {{/files}}
+    </ul>
+</div>
+<a href="/board/file/single_upload_form" >다시 업로드</a>
+</body>
+</html>

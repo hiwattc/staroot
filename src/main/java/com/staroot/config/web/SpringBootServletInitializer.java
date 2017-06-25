@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.staroot.starootApplication;
+import com.staroot.StarootApplication;
 
 import javax.servlet.Filter;
 import java.nio.charset.Charset;
@@ -20,7 +20,7 @@ public class SpringBootServletInitializer extends org.springframework.boot.web.s
     //war를 처리하기위해 필요하다.
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(starootApplication.class);
+        return application.sources(StarootApplication.class);
     }
 
 
