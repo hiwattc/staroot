@@ -8,7 +8,7 @@
 	<div class="container">
 		<h1>Modify</h1>
 		{{#sessionUser}}
-		<form action="/user/update" method="POST">
+		<form action="/user/update" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
 					class="form-control" name="password" placeholder="Password">
@@ -21,8 +21,16 @@
 				<label for="email">E-Mail</label> <input type="text"
 					class="form-control" name="email" placeholder="E-Mail" value="{{email}}">
 			</div>
+			<div class="form-group">
+				<label for="file">Picture</label> 
+				<input type="file"	class="form-control" name="picfile" placeholder="Picture">
+		{{#file}}
+				<label >{{file.origFileNm}}</label><br> 
+    			<img src="/user/profile/image/{{userId}}_{{file.origFileNm}}" class="img-rounded" width="304">
+		{{/file}}
+			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
-		</form>
+		</form>		
 		{{/sessionUser}}
 	</div>
 </body>

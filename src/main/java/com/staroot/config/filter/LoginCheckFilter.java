@@ -30,6 +30,7 @@ public class LoginCheckFilter implements Filter {
 					request.getRequestURI().startsWith("/api/users") ||
 					request.getRequestURI().startsWith("/user/login") ||
 					request.getRequestURI().startsWith("/user/register") ||
+					request.getRequestURI().startsWith("/user/profile/image") ||
 					request.getRequestURI().startsWith("/images") ||
 					request.getRequestURI().startsWith("/h2") ||
 					request.getRequestURI().startsWith("/webjars") ||

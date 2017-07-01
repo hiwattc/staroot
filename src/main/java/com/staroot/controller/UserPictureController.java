@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/board/file")
-public class UploadFileController {
+public class UserPictureController {
     @RequestMapping(method = RequestMethod.GET, value = "/files")
     public String provideUploadInfo(Model model) {
         File rootFolder = new File(StarootApplication.UPLOAD_DIR);
@@ -129,5 +129,6 @@ public class UploadFileController {
             return "Unable to upload. File is empty.";
         }
     }
+    
 }
 

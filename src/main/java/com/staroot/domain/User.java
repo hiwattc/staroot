@@ -1,9 +1,12 @@
 package com.staroot.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,6 +21,10 @@ public class User {
 	private String password;
 	private String name;
 	private String email;
+	
+	//Cascade Issue : http://postitforhooney.tistory.com/entry/JavaJPAHibernate-CascadeType%EB%9E%80-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%A2%85%EB%A5%98
+	@OneToOne(mappedBy="user" ,cascade = {CascadeType.ALL})
+	private com.staroot.domain.UserPicture file;
 	
 	@JsonProperty
 	private String dummy;
@@ -55,9 +62,10 @@ public class User {
 		return id;
 	}  
 	
-	public void update(User user, String password) {
+	public void update(User user, String password, com.staroot.domain.UserPicture file) {
 	    this.name = user.getName();
 	    this.email = user.getEmail();
+	    if(file != null) this.file = file;
 	    if(password != null && !password.equals("")){
 		    this.password = password;
 	    }
@@ -106,6 +114,14 @@ public class User {
 		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
+	}
+
+	public UserPicture getFile() {
+		return file;
+	}
+
+	public void setFile(UserPicture file) {
+		this.file = file;
 	}
 	
 	
