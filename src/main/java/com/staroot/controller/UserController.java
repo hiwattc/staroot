@@ -171,6 +171,7 @@ public class UserController {
 				System.out.println("UploadFileController fileUpload Fail??..." + e.getMessage());
 			}
 		} else {
+			sessionUser.update(user, password, userPicFile);
 			System.out.println("UploadFileController fileUpload Empty File...");
 		}
 		userRepository.save(sessionUser);
