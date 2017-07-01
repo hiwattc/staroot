@@ -1,5 +1,6 @@
 package com.staroot.domain;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
+@Cacheable(false)
 public class User {
 	@Id
 	@GeneratedValue
