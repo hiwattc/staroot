@@ -96,9 +96,12 @@ public class Board {
 
 	public boolean isSameWriter(User writer) {
 		if(writer == null){
+		    System.out.println("[게시판수정] 세션값의 Writer가 null입니다 ");
 			return false;
 		}
-		return this.writer.equals(writer);
+		System.out.println("로그인사용자::"+writer.toString());
+		System.out.println("게시판글쓴이::"+this.writer.toString());
+		return this.writer.getId().equals(writer.getId());
 	}
 
 	public void update(String title, String contents) {

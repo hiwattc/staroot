@@ -74,7 +74,8 @@ public class XSSFilter
 	}else if(requestURI.startsWith("/board/modify")){
 		//Filter예외적용대상
 		System.out.println("Weak XSS Filter Applied!");
-		chain.doFilter(new RequestWrapperEx((HttpServletRequest)servletRequest), servletResponse);
+		chain.doFilter(servletRequest, servletResponse);
+		//chain.doFilter(new RequestWrapperEx((HttpServletRequest)servletRequest), servletResponse);
 	}else{
 		//Filter적용대상
 		System.out.println("Normal XSS Filter Applied!");

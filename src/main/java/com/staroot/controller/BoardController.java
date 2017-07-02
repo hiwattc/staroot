@@ -232,9 +232,14 @@ public class BoardController {
 		Board board = new Board();
 		board = boardRepository.findOne(id);
 		
+	    System.out.println("로그인사용자(세션):"+writer.getId()+"/"+writer.getName()+"/"+writer.getUserId());
+	    System.out.println("게시판글쓴이 :"+board.getWriter().getId()+"/"+board.getWriter().getName()+board.getWriter().getUserId());
+		
 		if(!board.isSameWriter(writer)){
+			System.out.println("BoardController 동일사용자가 아닙니다 ");
 			return "redirect:/user/login";
 		}
+		System.out.println("BoardController 동일사용자입니");
 		model.addAttribute("boardDetail", board);
 		return "/board/modifyForm";
 	}

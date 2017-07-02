@@ -69,8 +69,11 @@ public class LoginCheckFilter implements Filter {
 				    if(user != null){
 						System.out.println("Login required!::"+request.getRequestURI());
 				    	System.out.println("Login User ::"+user.toString());
+				    	System.out.println("111111111111111111111111");
 				    	userController.saveLoginHist(request, user, "SUCCESS");
+				    	System.out.println("222222222222222222222222");
 					    chain.doFilter(req, res);
+				    	System.out.println("333333333333333333333333");
 				    }else{
 						System.out.println("Login required!::"+request.getRequestURI());
 				    	System.out.println("Session exists! But Not Logined yet!");
