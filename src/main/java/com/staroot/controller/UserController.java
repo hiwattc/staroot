@@ -5,12 +5,19 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -38,10 +45,15 @@ import com.staroot.domain.User;
 import com.staroot.domain.UserPicture;
 import com.staroot.domain.UserRepository;
 import com.staroot.util.web.HttpSessionUtil;
+import com.staroot.util.web.RsaEncUtil;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+    public static final int KEY_SIZE = 2048;//OK
+
+    
 	List<User> users = new ArrayList<User>();
 
 	@Autowired
@@ -55,9 +67,16 @@ public class UserController {
 	
 	@Autowired
 	private LoginHistRepository loginHistRepository;
+	
+	@Autowired
+	private RsaEncUtil rsaEncUtil;
+	
+	
 
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request,Model model) {
+		
+		rsaEncUtil.createRsaKey(request, model);
 		return "/user/login";
 	}
 
@@ -67,6 +86,24 @@ public class UserController {
 		if (session.getAttribute("loginFailCnt") != null) {
 			loginFailCnt = (int) session.getAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY);
 		}
+		//System.out.println("decryptRequestParam Before.....");
+		//System.out.println("userId ::"+userId);
+		//System.out.println("password ::"+password);
+		//----------------------------------------------------------------------
+		rsaEncUtil.decryptRequestParam(request);
+		//----------------------------------------------------------------------
+		//System.out.println("decryptRequestParam After.....");
+		//System.out.println("userId ::"+userId);
+		//System.out.println("password ::"+password);
+		//System.out.println("request.getParameter(userId) ::"+request.getParameter("userId"));
+		//System.out.println("request.getParameter(password) ::"+request.getParameter("password"));
+
+		//System.out.println("request.getAttribute(userId) ::"+request.getAttribute("userId"));
+		//System.out.println("request.getAttribute(password) ::"+request.getAttribute("password"));
+		
+		userId = (String) request.getAttribute("userId");
+		password = (String) request.getAttribute("password");
+		
 		User user = userRepository.findByUserId(userId);
 		if (user == null) {
 			loginFailCnt = loginFailCnt + 1;
@@ -115,10 +152,11 @@ public class UserController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpServletRequest request,HttpSession session) {
+		
 		session.removeAttribute(HttpSessionUtil.USER_SESSION_KEY);
 		session.removeAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY);
-		return "/user/login";
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/register")

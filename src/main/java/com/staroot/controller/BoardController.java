@@ -233,7 +233,7 @@ public class BoardController {
 		board = boardRepository.findOne(id);
 		
 		if(!board.isSameWriter(writer)){
-			return "/user/login";
+			return "redirect:/user/login";
 		}
 		model.addAttribute("boardDetail", board);
 		return "/board/modifyForm";

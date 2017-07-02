@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>{{> /include/header }}
+
+
 </head>
 <body>
 	{{> /include/navigation }}
@@ -12,17 +14,46 @@
 	<span class="label label-danger">Login Failed! Try Again!</span>&nbsp;&nbsp;
 	<span class="label label-danger">{{loginFailCnt}}</span>
 	{{/loginFailCnt}}
-		<form action="/user/login" method="POST">
+		<form action="/user/login" method="POST" class="loginForm">
 			<div class="form-group">
 				<label for="userId">UserId</label> <input type="text"
-					class="form-control" name="userId" placeholder="UserId" value="test1">
+					class="form-control" name="userId" id="userId" placeholder="UserId" value="test1">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
-					class="form-control" name="password" placeholder="Password" value="1">
+					class="form-control" name="password" id="password" placeholder="Password" value="1">
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+			
+			
+			<input type="hidden" id="rsaPublicKeyModulus" value="{{pubKeyM}}" />
+            <input type="hidden" id="rsaPublicKeyExponent" value="{{pubKeyE}}" />
+			
 		</form>
+<!-- 		
+		<div>
+		RSA INFO(RequestParam) <br>
+		{{pubKeyM}}<br>
+		{{pubKeyE}}<br>
+
+		RSA INFO(Model String Param) <br>
+		{{publicKeyModulus}}<br>
+		{{publicKeyExponent}}<br>
+
+		RSA INFO(Model Map Param) <br>
+		{{#rsaInfo}}
+		{{publicKeyModulus}}<br>
+		{{publicKeyExponent}}<br>
+		{{/rsaInfo}}
+		</div>
+		 -->
 	</div>
+	<script src="/js/scripts.js"></script>
 </body>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/jsbn.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/rsa.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/prng4.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/rng.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/login.js"></script>
+
 </html>

@@ -28,27 +28,28 @@ public class LoginCheckFilter implements Filter {
 			HttpServletRequest request = (HttpServletRequest) req;
 			HttpServletResponse response = (HttpServletResponse) res;
 
+			String requestURI = request.getRequestURI();
 			
 
 			//security area session check
 			if(
-					request.getRequestURI().equals("/") ||
-					request.getRequestURI().startsWith("/api/users") ||
-					request.getRequestURI().startsWith("/user/login") ||
-					request.getRequestURI().startsWith("/user/register") ||
-					request.getRequestURI().startsWith("/user/profile/image") ||
-					request.getRequestURI().startsWith("/images") ||
-					request.getRequestURI().startsWith("/js") ||
-					request.getRequestURI().startsWith("/h2") ||
-					request.getRequestURI().startsWith("/webjars") ||
-					request.getRequestURI().startsWith("/board/list") ||
-					request.getRequestURI().startsWith("/board/file")
+					requestURI.equals("/") ||
+					requestURI.startsWith("/api/users") ||
+					requestURI.startsWith("/user/login") ||
+					requestURI.startsWith("/user/register") ||
+					requestURI.startsWith("/user/profile/image") ||
+					requestURI.startsWith("/images") ||
+					requestURI.startsWith("/js") ||
+					requestURI.startsWith("/h2") ||
+					requestURI.startsWith("/webjars") ||
+					requestURI.startsWith("/board/list") ||
+					requestURI.startsWith("/board/file")
 					){
 				//DO NOT LoginCheck
 				System.out.println("Login check ignored::"+request.getRequestURI());
 			    chain.doFilter(req, res);
 			}else{
-		    	System.out.println("=========================request.getRequestURI().startsWith(/user/member)======");
+		    	//System.out.println("=========================request.getRequestURI().startsWith(/user/member)======");
 				//System.out.println(":::TestFilter doFilter() called");
 				//System.out.println("req.getServletContext()::"+req.getServletContext());
 				//System.out.println("req.getContentType()::"+req.getContentType());
@@ -60,8 +61,8 @@ public class LoginCheckFilter implements Filter {
 				//System.out.println("req.getScheme()::"+req.getScheme());
 		    	
 			    //response.setHeader(X_HEADER_TEST, "STAROOT HIWATT");
-				System.out.println("req.getRemoteAddr()::"+req.getRemoteAddr());
-				System.out.println("req.getCharacterEncoding()::"+req.getCharacterEncoding());
+				//System.out.println("req.getRemoteAddr()::"+req.getRemoteAddr());
+				//System.out.println("req.getCharacterEncoding()::"+req.getCharacterEncoding());
 			    HttpSession session = request.getSession(false);
 			    if(session != null){
 				    User user = HttpSessionUtil.getUserFromSession(session);
