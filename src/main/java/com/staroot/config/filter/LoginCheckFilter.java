@@ -67,14 +67,21 @@ public class LoginCheckFilter implements Filter {
 			    if(session != null){
 				    User user = HttpSessionUtil.getUserFromSession(session);
 				    if(user != null){
-						System.out.println("Login requred!::"+request.getRequestURI());
+						System.out.println("Login required!::"+request.getRequestURI());
 				    	System.out.println("Login User ::"+user.toString());
 				    	userController.saveLoginHist(request, user, "SUCCESS");
 					    chain.doFilter(req, res);
 				    }else{
-						System.out.println("Login requred!::"+request.getRequestURI());
+						System.out.println("Login required!::"+request.getRequestURI());
 				    	System.out.println("Session exists! But Not Logined yet!");
+				    	//17.07.02 use try catch for unexpected Exception
+				    	/*
+				    	try{
 				    	userController.saveLoginHist(request, user, "FAIL(Not Login)");
+				    	}catch(Exception e){
+				    		System.out.println(e.toString());
+				    	}
+				    	*/
 				    	response.sendRedirect("/user/login");
 				    }
 			    }else{

@@ -21,6 +21,7 @@ function addReply(e){
 }
 
 function onError(){
+	location.href="/user/login";
 	
 }
 

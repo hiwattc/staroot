@@ -46,7 +46,11 @@ public class LoginHist {
 	}
 	
 	public LoginHist(User user, String ip, String referer, String requestURI,String status){
-		this.user = user;
+		if(user == null){
+			this.user = new User();
+		}else{
+			this.user = user;
+		}
 		this.ip = ip;
 		this.referer = referer;
 		this.requestURI = requestURI;

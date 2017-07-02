@@ -66,8 +66,9 @@ public class XSSFilter
 	if(		 requestURI.startsWith("/images") ||
 			 requestURI.startsWith("/js") ||
 	         requestURI.startsWith("/h2") ||
+			 requestURI.startsWith("/api") ||
              requestURI.startsWith("/webjar")	){
-		System.out.println("Weak XSS Filter Ignored!");
+		System.out.println("XSS Filter Ignored!");
 		chain.doFilter(servletRequest, servletResponse);
 		
 	}else if(requestURI.startsWith("/board/modify")){
