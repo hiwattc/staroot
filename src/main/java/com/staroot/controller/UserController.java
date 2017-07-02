@@ -199,7 +199,9 @@ public class UserController {
 		*/
 		
 		//유저정보를 세션에 저장시 여러기기에서 중복로그인시 프로필정보 수정조회가 바로안되는 이슈대응 
-		User userInfo = HttpSessionUtil.getUserFromSession(session);
+		User sessionUserInfo = HttpSessionUtil.getUserFromSession(session);
+		User userInfo = userRepository.findByUserId(sessionUserInfo.getUserId());
+
 		model.addAttribute("userInfo",userInfo);
 		
 		return "/user/profile";
