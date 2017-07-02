@@ -90,7 +90,7 @@ public class BoardController {
 			if(sessionSelPageNo != null){
 				selPageNo = sessionSelPageNo;
 			}else{
-				selPageNo = Integer.toString(MIN_PAGE_SIZE);
+				selPageNo = "1";
 				session.setAttribute("sessionSelPageNo", selPageNo);
 			}
 		}else{
