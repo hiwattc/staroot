@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity
-@Cacheable(false)
+//@Cacheable(false)
 public class Board {
 	@Id
 	@GeneratedValue

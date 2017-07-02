@@ -11,11 +11,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -28,6 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.staroot.StarootApplication;
 import com.staroot.domain.UserPictureRepository;
+import com.staroot.domain.LoginHist;
+import com.staroot.domain.LoginHistRepository;
 import com.staroot.domain.Message;
 import com.staroot.domain.MessageRepository;
 import com.staroot.domain.User;
@@ -49,13 +53,16 @@ public class UserController {
 	@Autowired
 	private UserPictureRepository fileRepository;
 	
+	@Autowired
+	private LoginHistRepository loginHistRepository;
+
 	@GetMapping("/login")
 	public String login() {
 		return "/user/login";
 	}
 
 	@PostMapping("/login")
-	public String login(String userId, String password, HttpSession session) {
+	public String login(String userId, String password, HttpSession session, HttpServletRequest request) {
 		int loginFailCnt = 0;
 		if (session.getAttribute("loginFailCnt") != null) {
 			loginFailCnt = (int) session.getAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY);
@@ -65,6 +72,7 @@ public class UserController {
 			loginFailCnt = loginFailCnt + 1;
 			System.out.println("Login Fail!(User doesn't exists!)");
 			session.setAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY, loginFailCnt);
+			saveLoginHist(request, user,"FAIL(1)");
 			return "redirect:/user/login";
 		}
 
@@ -72,14 +80,38 @@ public class UserController {
 			loginFailCnt = loginFailCnt + 1;
 			System.out.println("Login Fail!(User's Password doesn't match!)");
 			session.setAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY, loginFailCnt);
+			saveLoginHist(request, user,"FAIL(2)");
 			return "redirect:/user/login";
 		}
 
 		System.out.println("Login Success!");
 		session.removeAttribute(HttpSessionUtil.LOGIN_FAILED_CNT_KEY);
 		session.setAttribute(HttpSessionUtil.USER_SESSION_KEY, user);
+		
+		//get user ip
+		//request.getHeader("X_FORWARDED_FOR")
+		saveLoginHist(request, user,"SUCCESS");
 
 		return "redirect:/";
+	}
+
+	public void saveLoginHist(HttpServletRequest request, User user, String status) {
+		String userIp = "";
+		String reqRemoteAddr = request.getRemoteAddr();
+		String reqXfowardedIp = request.getHeader("X_FORWARDED_FOR");
+		String referer = request.getHeader("referer");
+		String requestURI = request.getRequestURI();
+		
+		System.out.println("request.getRemoteAddr()::"+request.getRemoteAddr());
+		System.out.println("request.getHeader(X_FORWARDED_FOR)::"+request.getHeader("X_FORWARDED_FOR"));
+		
+		if(reqRemoteAddr != null && !"".equals(reqRemoteAddr)){
+			userIp = reqRemoteAddr;
+		}else{
+			userIp = reqXfowardedIp;
+		}
+        LoginHist loginHist = new LoginHist(user,userIp,referer,requestURI,status);
+		loginHistRepository.save(loginHist);
 	}
 
 	@GetMapping("/logout")
@@ -127,6 +159,11 @@ public class UserController {
 		}
 		model.addAttribute("additionalUserInfo",userInfoMap);
 		*/
+		
+		//유저정보를 세션에 저장시 여러기기에서 중복로그인시 프로필정보 수정조회가 바로안되는 이슈대응 
+		User userInfo = HttpSessionUtil.getUserFromSession(session);
+		model.addAttribute("userInfo",userInfo);
+		
 		return "/user/profile";
 	}
 

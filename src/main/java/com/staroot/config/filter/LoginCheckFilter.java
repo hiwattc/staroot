@@ -5,8 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.staroot.controller.UserController;
+import com.staroot.domain.LoginHistRepository;
 import com.staroot.domain.User;
 import com.staroot.util.web.HttpSessionUtil;
 
@@ -16,6 +19,9 @@ import java.io.IOException;
 public class LoginCheckFilter implements Filter {
 	  public static final String X_HEADER_TEST = "X_HEADER_TEST";
 
+      @Autowired
+	  private UserController userController;
+	  
 	  @Override
 	  public void doFilter(ServletRequest req, ServletResponse res,
 	      FilterChain chain) throws IOException, ServletException {
@@ -32,6 +38,7 @@ public class LoginCheckFilter implements Filter {
 					request.getRequestURI().startsWith("/user/register") ||
 					request.getRequestURI().startsWith("/user/profile/image") ||
 					request.getRequestURI().startsWith("/images") ||
+					request.getRequestURI().startsWith("/js") ||
 					request.getRequestURI().startsWith("/h2") ||
 					request.getRequestURI().startsWith("/webjars") ||
 					request.getRequestURI().startsWith("/board/list") ||
@@ -61,10 +68,12 @@ public class LoginCheckFilter implements Filter {
 				    if(user != null){
 						System.out.println("Login requred!::"+request.getRequestURI());
 				    	System.out.println("Login User ::"+user.toString());
+				    	userController.saveLoginHist(request, user, "SUCCESS");
 					    chain.doFilter(req, res);
 				    }else{
 						System.out.println("Login requred!::"+request.getRequestURI());
 				    	System.out.println("Session exists! But Not Logined yet!");
+				    	userController.saveLoginHist(request, user, "FAIL(Not Login)");
 				    	response.sendRedirect("/user/login");
 				    }
 			    }else{

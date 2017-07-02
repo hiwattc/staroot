@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Cacheable(false)
+//@Cacheable(false)
 public class UserPicture {
 	@Id
 	@GeneratedValue

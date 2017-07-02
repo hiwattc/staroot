@@ -7,7 +7,8 @@
 	{{> /include/navigation }}
 	<div class="container">
 		<h1>Modify</h1>
-		{{#sessionUser}}
+		<!-- #sessionUser -->
+		{{#userInfo}}
 		<form action="/user/update" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
@@ -30,8 +31,9 @@
 		{{/file}}
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
-		</form>		
-		{{/sessionUser}}
+		</form>	
+		{{/userInfo}}
+		<!-- /sessionUser -->
 	</div>
 </body>
 </html>

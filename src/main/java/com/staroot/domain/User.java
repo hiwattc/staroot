@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Cacheable(false)
+//@Cacheable(false)
 public class User {
 	@Id
 	@GeneratedValue
