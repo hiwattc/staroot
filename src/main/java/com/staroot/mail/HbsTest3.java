@@ -67,9 +67,9 @@ public class HbsTest3 {
 		
 		String mailContent = template.apply(map);
 		System.out.println(template.apply(map));
-		MailExam mailSender = new MailExam();
+		MailSender mailSender = new MailSender();
 		try {
-			mailSender.MailExam(mailContent);
+			mailSender.sendMail(mailContent);
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
 		}

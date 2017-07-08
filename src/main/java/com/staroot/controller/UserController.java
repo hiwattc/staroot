@@ -51,7 +51,7 @@ import com.staroot.util.web.RsaEncUtil;
 @RequestMapping("/user")
 public class UserController {
 	
-    public static final int KEY_SIZE = 2048;//OK
+    public static final int KEY_SIZE = 1024;//OK --2048로하는경우 알수없는 decrypt오류발생할수 있음 
 
     
 	List<User> users = new ArrayList<User>();
@@ -95,11 +95,11 @@ public class UserController {
 		//System.out.println("decryptRequestParam After.....");
 		//System.out.println("userId ::"+userId);
 		//System.out.println("password ::"+password);
-		//System.out.println("request.getParameter(userId) ::"+request.getParameter("userId"));
-		//System.out.println("request.getParameter(password) ::"+request.getParameter("password"));
-
-		//System.out.println("request.getAttribute(userId) ::"+request.getAttribute("userId"));
-		//System.out.println("request.getAttribute(password) ::"+request.getAttribute("password"));
+		System.out.println("request.getParameter(userId) ::"+request.getParameter("userId"));
+		System.out.println("request.getParameter(password) ::"+request.getParameter("password"));
+		
+		System.out.println("request.getAttribute(userId) ::"+request.getAttribute("userId"));
+		System.out.println("request.getAttribute(password) ::"+request.getAttribute("password"));
 		
 		userId = (String) request.getAttribute("userId");
 		password = (String) request.getAttribute("password");

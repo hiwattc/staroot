@@ -41,6 +41,7 @@ public class LoginCheckFilter implements Filter {
 					requestURI.startsWith("/images") ||
 					requestURI.startsWith("/js") ||
 					requestURI.startsWith("/h2") ||
+					requestURI.startsWith("/ckeditor") ||
 					requestURI.startsWith("/webjars") ||
 					requestURI.startsWith("/board/list") ||
 					requestURI.startsWith("/board/file")

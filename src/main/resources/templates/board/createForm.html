@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 {{> /include/header }}
+
+<script src="/ckeditor/ckeditor.js"></script>
+<script src="/js/board/sample.js"></script>
+
 </head>
 <body>
 	{{> /include/navigation }}
@@ -14,10 +18,13 @@
 			</div>
 			<div class="form-group">
   				<label for="contents">Contents</label> 
-		    	<textarea class="form-control" rows="3" name="contents" placeholder="contents"></textarea>
+		    	<textarea id="contents" class="form-control" rows="3" name="contents" placeholder="contents"></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
 		</form>
 	</div>
 </body>
+<script>
+	initSample();
+</script>
 </html>

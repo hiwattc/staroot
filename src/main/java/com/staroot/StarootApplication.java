@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class StarootApplication {
 	public static final String BASE_PACKAGES = "com.staroot";
 	public static String UPLOAD_DIR = "/staroot_upload_dir";
+	public static String UPLOAD_DIR_CKEDITOR = "/staroot_upload_dir/ckeditor";
 	public static String UPLOAD_DIR_PATH;
 
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package com.staroot.mail;
 
 import java.util.Properties;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -11,16 +12,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
- 
-public class MailExam {
+
+//@Component
+public class MailSender {
+	
     public static void main(String[] args){
         try{
-            MailExam("본문내용입니다.");
+        	MailSender sender = new MailSender();
+        	//MailExam("본문내용입니다.");
         }catch(Exception e){
             System.out.println("Error:"+e.getMessage());
         }
     }
-    public static void MailExam(String mailContents) throws Exception{
+    //public void MailExam(String mailContents) throws Exception{
+    public static void sendMail(String mailContents) throws Exception{
     
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
@@ -31,6 +36,7 @@ public class MailExam {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.quitwait", "false");
+        System.out.println("11111111111111 mail");
          
         Authenticator auth = new Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -38,8 +44,19 @@ public class MailExam {
             }
         };
  
+        System.out.println("222222222222222 mail");
 
         Session session = Session.getDefaultInstance(props,auth);
+        /*
+        try{
+        	//17.07.08 에러발생 : getDefaultInstance Access to default session denied
+        	Session.getDefaultInstance(props,auth);
+        	//Session.getInstance(props,auth);
+        	
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        System.out.println("333333333333333333 mail");
         System.out.println("메일세션생성완료!");
          
         MimeMessage message = new MimeMessage(session);

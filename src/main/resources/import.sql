@@ -76,6 +76,9 @@ INSERT INTO BOARD (TITLE, CONTENTS, USER_ID, CREATE_DATE, MODIFY_DATE) VALUES('�
 INSERT INTO BOARD (TITLE, CONTENTS, USER_ID, CREATE_DATE, MODIFY_DATE) VALUES('게시물60','게시물내용입니다<br>Hello ','10',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
+INSERT INTO BOARD (TITLE, USER_ID, CREATE_DATE, MODIFY_DATE, CONTENTS) VALUES('게시물61','1',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,'<!DOCTYPE html><html><body><h2>MailTemplteTest</h2><table><tr><th>사용자아이디</th><th>이름</th><th>설명</th></tr>{{#userinfo}}<tr><td>{{userid}}</td><td>{{name}}</td><td>{{desc}}</td></tr>{{/userinfo}}</table></body><script></script></html>');
+
+
 insert into REPLY (contents, create_date, board_id, writer_id) values('reply1',CURRENT_TIMESTAMP, 60,1);
 insert into REPLY (contents, create_date, board_id, writer_id) values('reply2',CURRENT_TIMESTAMP, 60,1);
 insert into REPLY (contents, create_date, board_id, writer_id) values('reply3',CURRENT_TIMESTAMP, 60,1);

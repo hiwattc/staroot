@@ -67,6 +67,9 @@ public class XSSFilter
 			 requestURI.startsWith("/js") ||
 	         requestURI.startsWith("/h2") ||
 			 requestURI.startsWith("/api") ||
+			 requestURI.startsWith("/ckeditor") ||
+			 requestURI.startsWith("/board") ||
+			 requestURI.startsWith("/user/login") ||
              requestURI.startsWith("/webjar")	){
 		System.out.println("XSS Filter Ignored!");
 		chain.doFilter(servletRequest, servletResponse);
