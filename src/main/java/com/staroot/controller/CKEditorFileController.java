@@ -85,26 +85,18 @@ public class CKEditorFileController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/single_upload")
+	@RequestMapping(method = RequestMethod.POST, value = "/{uploadType}/upload")
 	// @ResponseBody
-	public String fileUpload(@RequestParam("upload") MultipartFile file, HttpSession session,
-			RedirectAttributes redirectAttributes) {
+	public String fileUpload(@PathVariable(value = "uploadType") String uploadType 
+			               , @RequestParam("upload") MultipartFile file
+			               , HttpSession session
+			               , RedirectAttributes redirectAttributes) {
 
 		System.out.println("UploadFileController fileUpload called...");
 
 		System.out.println("file.getName()::" + file.getOriginalFilename());
 		String name = file.getOriginalFilename();
 
-		if (name.contains("/")) {
-			redirectAttributes.addFlashAttribute("message", "Folder separators not allowed");
-			return "redirect:/board/file/files";
-		}
-		System.out.println("UploadFileController fileUpload 1111111111111111111111...");
-		if (name.contains("/")) {
-			redirectAttributes.addFlashAttribute("message", "Relative pathnames not allowed");
-			return "redirect:/board/file/files";
-		}
-		System.out.println("UploadFileController fileUpload 2222222222222222222222...");
 
 		if (!file.isEmpty()) {
 			try {
@@ -114,7 +106,12 @@ public class CKEditorFileController {
 
 				// user file folder create
 				// -----------------------------------------------------------------------------------------------
-				String userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + sessionUser.getUserId();
+				String userFolderLocation = "";
+				if("private".equals(uploadType)){
+					userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + sessionUser.getUserId();
+				}else if("public".equals(uploadType)){
+					userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + "public";
+				}
 				File theDir = new File(userFolderLocation);
 				if (!theDir.exists()) {
 					System.out.println("creating directory: " + theDir.getName());
@@ -139,8 +136,7 @@ public class CKEditorFileController {
 				// ----------------------------------------------------------------------
 				UserFile userFile = null;
 
-				userFile = new UserFile(sessionUser, name, randmeFileName, StarootApplication.UPLOAD_DIR_CKEDITOR,
-						file.getSize());
+				userFile = new UserFile(sessionUser, name, randmeFileName, userFolderLocation,file.getSize(),uploadType);
 
 				userFileRepository.save(userFile);
 				// ----------------------------------------------------------------------
@@ -149,34 +145,46 @@ public class CKEditorFileController {
 				redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + name + "!");
 			} catch (Exception e) {
 				System.out.println("UploadFileController fileUpload Fail??..." + e.getMessage());
-				redirectAttributes.addFlashAttribute("message",
-						"You failed to upload " + name + " => " + e.getMessage());
 			}
 		} else {
 			System.out.println("UploadFileController fileUpload Fail??(22222)...");
-			redirectAttributes.addFlashAttribute("message",
-					"You failed to upload " + name + " because the file was empty");
 		}
 
 		System.out.println("UploadFileController fileUpload 4444444444444444444...");
-		return "redirect:/ckeditor/file/userFileList";
+		String redirectUrl = "";
+		if ("private".equals(uploadType)){
+			redirectUrl = "redirect:/ckeditor/file/userFileList";
+		}else{
+			redirectUrl = "redirect:/ckeditor/file/editorFileList";
+		}
+		return redirectUrl;
 	}
 
-	@RequestMapping(value = "/download/{fileId:.+}")
+	@RequestMapping(value = "/{uploadType}/download/{fileId:.+}")
 	@ResponseBody
-	public byte[] getFile(@PathVariable(value = "fileId") Long fileId, HttpSession session, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public byte[] getFile(@PathVariable(value = "uploadType") String uploadType
+			            , @PathVariable(value = "fileId") Long fileId
+			            , HttpSession session
+			            , HttpServletRequest request
+			            , HttpServletResponse response) throws IOException {
 		System.out.println("getFile().............");
 
 		User sessionUser = HttpSessionUtil.getUserFromSession(session);
+		String userFolderLocation = "";
 		// user file folder create
 		// -----------------------------------------------------------------------------------------------
-		String userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + sessionUser.getUserId();
+		if("private".equals(uploadType)){
+			userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + sessionUser.getUserId();
+		}else if ("public".equals(uploadType)){
+			userFolderLocation = StarootApplication.UPLOAD_DIR_CKEDITOR + "/" + "public";
+		}
 		String fileUUIDNm = "";
 		UserFile userFile = userFileRepository.findOne(fileId);
 		if (userFile == null) {
 			System.out.println("no file exists!");
 		} else {
+			//파일저장정보 존재시 해당 저장경로사용
+			userFolderLocation = userFile.getFilePath();
 			fileUUIDNm = userFile.getChngFileNm();
 		}
 
@@ -214,7 +222,7 @@ public class CKEditorFileController {
 
 		return Files.readAllBytes(serverFile.toPath());
 	}
-
+	
 	@RequestMapping(value = "/multi_upload_form", method = RequestMethod.GET)
 	public String showMultiUploadForm() {
 		return "/test/upload/multi_upload_form";

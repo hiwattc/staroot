@@ -6,7 +6,7 @@
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function goDownLink(id){
-	location.href="/ckeditor/file/download/"+id;
+	location.href="/ckeditor/file/public/download/"+id;
 }
 // Helper function to get parameters from the query string.
 function getUrlParam( paramName ) {
@@ -16,11 +16,16 @@ function getUrlParam( paramName ) {
     return ( match && match.length > 1 ) ? match[1] : null;
 }
 // Simulate user action of selecting a file to be returned to CKEditor.
-function returnFileUrl(id) {
+function returnFileUrl(id,fileDiv) {
+	
+	if(fileDiv == "private"){
+		alert("You can't use private File!");
+		return;
+	}
 
     var funcNum = getUrlParam( 'CKEditorFuncNum' );
     //var fileUrl = 'http://c.cksource.com/a/1/img/sample.jpg';
-    var fileUrl = "/ckeditor/file/download/"+id;
+    var fileUrl = "/ckeditor/file/public/download/"+id;
     
     
     window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl, function() {
@@ -46,7 +51,7 @@ function returnFileUrl(id) {
 </head>
 <body>
 	<div class="container">
-		<h1>FileList</h1>
+		<h1>PublicFileList</h1>
 
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -55,21 +60,23 @@ function returnFileUrl(id) {
 					<tr>
 						<th>Name</th>
 						<th>Size</th>
+						<th>Div</th>
 						<th>Date</th>
 					</tr>
 				</thead>
 				<tbody>
 					{{#userFileList}}
-					<tr onClick="javascript:returnFileUrl({{id}});" style="cursor: hand">
+					<tr onClick="javascript:returnFileUrl({{id}},'{{fileDiv}}');" style="cursor: hand">
 						<td>{{origFileNm}}</td>
 						<td>{{fileSize}}</td>
+						<td>{{fileDiv}}</td>
 						<td>{{createDate}}</td>
 					</tr>
 					{{/userFileList}}
 				</tbody>
 			</table>
 		</div>
-		<form action="/ckeditor/file/single_upload" method="POST" enctype="multipart/form-data">
+		<form action="/ckeditor/file/public/upload" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="file">File</label> 
 				<input type="file"	class="form-control" name="upload" placeholder="Select File">

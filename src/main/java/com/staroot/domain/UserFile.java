@@ -32,8 +32,17 @@ public class UserFile {
 	private String filePath;
 	private Long fileSize;
 	private LocalDateTime createDate;
+	private String fileDiv;
 
 	
+	public String getFileDiv() {
+		return fileDiv;
+	}
+
+	public void setFileDiv(String fileDiv) {
+		this.fileDiv = fileDiv;
+	}
+
 	public String getFormattedCreateDate(){
 		if(createDate == null){
 			return "";
@@ -44,25 +53,17 @@ public class UserFile {
 	public UserFile(){
 	}
 	
-	public UserFile(User user,String origFileNm, String chngFileNm, String filePath, Long fileSize){
+	public UserFile(User user,String origFileNm, String chngFileNm, String filePath, Long fileSize,String fileDiv){
 		this.user = user;
 		this.origFileNm = origFileNm;
 		this.chngFileNm = chngFileNm;
 		this.filePath = filePath;
 		this.fileSize = fileSize;
 		this.createDate = LocalDateTime.now();
+		this.fileDiv = fileDiv;
 		
 	}
 	
-	public void update(UserFile userPicFile){
-		this.origFileNm = userPicFile.getOrigFileNm();
-		this.chngFileNm = userPicFile.getChngFileNm();
-		this.filePath   = userPicFile.getFilePath();
-		this.fileSize   = userPicFile.getFileSize();
-		this.createDate = LocalDateTime.now();
-		
-	}
-
 	public String getOrigFileNm() {
 		return origFileNm;
 	}

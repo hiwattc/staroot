@@ -93,7 +93,7 @@ var initSample = ( function() {
 					 {
 						    //filebrowserBrowseUrl: '/ckeditor/file/files',
 						    filebrowserBrowseUrl: '/ckeditor/file/editorFileList',
-						    filebrowserUploadUrl: '/ckeditor/file/single_upload'
+						    filebrowserUploadUrl: '/ckeditor/file/public/upload'
 					 }
 			);
 		} else {
