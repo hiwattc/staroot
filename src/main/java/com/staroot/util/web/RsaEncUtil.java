@@ -7,6 +7,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.Security;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 import java.util.HashMap;
@@ -24,14 +25,26 @@ import org.springframework.ui.Model;
 @Component
 public class RsaEncUtil {
 	public static final int KEY_SIZE = 1024;// OK
+	//public static final int KEY_SIZE = 512;// OK
+	//public static final int KEY_SIZE = 2048;// NOK
+	//public static final int KEY_SIZE = 128;// NOK
 
 	public void createRsaKey(HttpServletRequest request, Model model) {
 		try {
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			
 			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+			//KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA/ECB/PKCS1Padding");
+			//KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA/None/PKCS1Padding");
+			
+			
+			
 			generator.initialize(KEY_SIZE);
 
 			KeyPair keyPair = generator.genKeyPair();
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			//KeyFactory keyFactory = KeyFactory.getInstance("RSA/ECB/PKCS1Padding");
+			//KeyFactory keyFactory = KeyFactory.getInstance("RSA/None/PKCS1Padding");
 
 			PublicKey publicKey = keyPair.getPublic();
 			PrivateKey privateKey = keyPair.getPrivate();
@@ -86,6 +99,10 @@ public class RsaEncUtil {
 			throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
 		}
 		try {
+			
+			System.out.println("privateKey of decryptRsa(privateKey, securedUsername) ::" + privateKey);
+			System.out.println("securedUsername of decryptRsa(privateKey, securedUsername) ::" + securedUsername);
+			
 			String username = decryptRsa(privateKey, securedUsername);
 			String password = decryptRsa(privateKey, securedPassword);
 
@@ -106,11 +123,38 @@ public class RsaEncUtil {
 	private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
 		String decryptedValue="";
 		try {
-			System.out.println("will decrypt : " + securedValue);
-			Cipher cipher = Cipher.getInstance("RSA");
+			System.out.println("will decrypt123456 : " + securedValue);
+			
+			
+			//safari에서는 잘되는데 크롬에서는 안되는 이슈발생해서
+			//화면단에서 암호화된 hex 값을 base64 로 한번더 인코딩함 
+			
+			
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			Cipher cipher = Cipher.getInstance("RSA");//초기버전 
+			//Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			//Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding", "BC");
+			
 			byte[] encryptedBytes = hexToByteArray(securedValue);
+			System.out.println("bytep[] encryptedBytes::"+encryptedBytes);
+			
+			//byte내 제일앞에 0이붙은거를 제거한다
+			//참고 : url http://kwon37xi.egloos.com/4427199
+			//잘안됨
+
+			/*
+			byte[] encryptedBytes2 = new byte[encryptedBytes.length-1];
+			if(encryptedBytes[0] == 0){
+					System.arraycopy(encryptedBytes, 1, encryptedBytes2, 0, encryptedBytes.length-1);
+			}
+			*/
+			
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
+			
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+			//byte[] decryptedBytes = cipher.doFinal(base64Decode(securedValue));
+			
+			
 			decryptedValue = new String(decryptedBytes, "utf-8"); // 문자
 																			// 인코딩
 																			// 주의.

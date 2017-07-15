@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function goDownLink(id){
+	location.href="/ckeditor/file/download/"+id;
+}
+// Helper function to get parameters from the query string.
+function getUrlParam( paramName ) {
+    var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+    var match = window.location.search.match( reParam );
+
+    return ( match && match.length > 1 ) ? match[1] : null;
+}
+// Simulate user action of selecting a file to be returned to CKEditor.
+function returnFileUrl(id) {
+
+    var funcNum = getUrlParam( 'CKEditorFuncNum' );
+    //var fileUrl = 'http://c.cksource.com/a/1/img/sample.jpg';
+    var fileUrl = "/ckeditor/file/download/"+id;
+    
+    
+    window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl, function() {
+        // Get the reference to a dialog window.
+        var dialog = this.getDialog();
+        // Check if this is the Image Properties dialog window.
+        if ( dialog.getName() == 'image' ) {
+            // Get the reference to a text field that stores the "alt" attribute.
+            var element = dialog.getContentElement( 'info', 'txtAlt' );
+            // Assign the new value.
+            if ( element )
+                element.setValue( 'alt text' );
+        }
+        // Return "false" to stop further execution. In such case CKEditor will ignore the second argument ("fileUrl")
+        // and the "onSelect" function assigned to the button that called the file manager (if defined).
+        // return false;
+    } );
+    window.close();
+}
+
+-->
+</SCRIPT>
+</head>
+<body>
+	<div class="container">
+		<h1>FileList</h1>
+
+		<div class="table-responsive">
+			<table class="table table-hover">
+<!-- 				<caption>Optional table caption.</caption> -->
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Size</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#userFileList}}
+					<tr onClick="javascript:returnFileUrl({{id}});" style="cursor: hand">
+						<td>{{origFileNm}}</td>
+						<td>{{fileSize}}</td>
+						<td>{{createDate}}</td>
+					</tr>
+					{{/userFileList}}
+				</tbody>
+			</table>
+		</div>
+		<form action="/ckeditor/file/single_upload" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="file">File</label> 
+				<input type="file"	class="form-control" name="upload" placeholder="Select File">
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Upload</button>
+		</form>	
+	</div>
+</body>
+</html>

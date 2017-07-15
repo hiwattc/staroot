@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/board/file")
-public class UserPictureController {
+public class SampleFileController {
     @RequestMapping(method = RequestMethod.GET, value = "/files")
     public String provideUploadInfo(Model model) {
         File rootFolder = new File(StarootApplication.UPLOAD_DIR);
@@ -46,28 +46,20 @@ public class UserPictureController {
                              @RequestParam("file") MultipartFile file,
                              RedirectAttributes redirectAttributes) {
     	
-    	System.out.println("UploadFileController fileUpload called...");
-    	
         if (name.contains("/")) {
             redirectAttributes.addFlashAttribute("message", "Folder separators not allowed");
             return "redirect:/board/file/files";
         }
-    	System.out.println("UploadFileController fileUpload 1111111111111111111111...");
         if (name.contains("/")) {
             redirectAttributes.addFlashAttribute("message", "Relative pathnames not allowed");
             return "redirect:/board/file/files";
         }
-    	System.out.println("UploadFileController fileUpload 2222222222222222222222...");
-
         if (!file.isEmpty()) {
             try {
-            	System.out.println("UploadFileController fileUpload 33333333333333333333...");
-
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(new File(StarootApplication.UPLOAD_DIR + "/" + name)));
                 FileCopyUtils.copy(file.getInputStream(), stream);
                 stream.close();
-            	System.out.println("UploadFileController fileUpload success????...");
                 redirectAttributes.addFlashAttribute("message",
                         "You successfully uploaded " + name + "!");
             }
@@ -82,8 +74,6 @@ public class UserPictureController {
             redirectAttributes.addFlashAttribute("message",
                     "You failed to upload " + name + " because the file was empty");
         }
-
-    	System.out.println("UploadFileController fileUpload 4444444444444444444...");
         return "redirect:/board/file/files";
     }
 

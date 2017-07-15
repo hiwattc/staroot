@@ -17,9 +17,6 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="/board/file/single_upload_form">(S)FileUploadTest</a></li>
-			<li><a href="/board/file/multi_upload_form">(M)FileUploadTest</a></li>
-			<li><a href="/mail/send/61">TemplateMailSend</a></li>
 			<li><a href="/board/list">Board</a></li>
 			{{^sessionUser}}
 				<li><a href="/user/login">Login</a></li>
@@ -27,6 +24,10 @@
 			{{/sessionUser}}
  			{{#sessionUser}}
 				<li><a href="/user/alert">Alert&nbsp;<span class="badge">42</span></a></li>
+				<li><a href="/board/file/single_upload_form">(S)FileUploadTest</a></li>
+				<li><a href="/board/file/multi_upload_form">(M)FileUploadTest</a></li>
+				<li><a href="/mail/send/61">TemplateMailSend</a></li>
+     			<li><a href="/ckeditor/file/userFileList">FileList</a></li>
 				<li><a href="/user/profile"><span class="badge">&nbsp;{{name}}</span></a></li>
 				<li><a href="/user/member">Members</a></li>
 				<li><a href="/user/logout">Logout</a></li>

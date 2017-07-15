@@ -61,12 +61,16 @@ function submitEncryptedForm(username, password, rsaPublicKeyModulus, rsaPpublic
     // 사용자ID와 비밀번호를 RSA로 암호화한다.
     var securedUsername = rsa.encrypt(username);
     var securedPassword = rsa.encrypt(password);
+    
+    // base64로변환 
+    //securedUsername = hex2b64(securedUsername);
+    //securedPassword = hex2b64(securedPassword);
 
     // POST 로그인 폼에 값을 설정하고 발행(submit) 한다.
     //alert(securedUsername);
     //alert(securedPassword);
-    $("#userId").value = securedUsername;
-    $("#password").value = securedPassword;
+    //$("#userId").value = securedUsername;
+    //$("#password").value = securedPassword;
     
     $("#userId").val(securedUsername);
     $("#password").val(securedPassword);

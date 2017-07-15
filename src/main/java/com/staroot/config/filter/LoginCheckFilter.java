@@ -79,7 +79,7 @@ public class LoginCheckFilter implements Filter {
 						System.out.println("Login required!::"+request.getRequestURI());
 				    	System.out.println("Session exists! But Not Logined yet!");
 				    	//17.07.02 use try catch for unexpected Exception
-				    	/*
+				    	/* 
 				    	try{
 				    	userController.saveLoginHist(request, user, "FAIL(Not Login)");
 				    	}catch(Exception e){

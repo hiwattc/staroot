@@ -51,9 +51,6 @@ import com.staroot.util.web.RsaEncUtil;
 @RequestMapping("/user")
 public class UserController {
 	
-    public static final int KEY_SIZE = 1024;//OK --2048로하는경우 알수없는 decrypt오류발생할수 있음 
-
-    
 	List<User> users = new ArrayList<User>();
 
 	@Autowired
@@ -147,8 +144,10 @@ public class UserController {
 		}else{
 			userIp = reqXfowardedIp;
 		}
-        LoginHist loginHist = new LoginHist(user,userIp,referer,requestURI,status);
-		loginHistRepository.save(loginHist);
+		if(user != null){
+	        LoginHist loginHist = new LoginHist(user,userIp,referer,requestURI,status);
+			loginHistRepository.save(loginHist);
+		}
 	}
 
 	@GetMapping("/logout")

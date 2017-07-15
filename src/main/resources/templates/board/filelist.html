@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function goDownLink(id){
+	location.href="/ckeditor/file/download/"+id;
+}
+-->
+</SCRIPT>
+</head>
+<body>
+	{{> /include/navigation }}
+	<div class="container">
+		<h1>FileList</h1>
+
+		<div class="table-responsive">
+			<table class="table table-hover">
+<!-- 				<caption>Optional table caption.</caption> -->
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Size</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#userFileList}}
+					<tr onClick="javascript:goDownLink({{id}});" style="cursor: hand">
+						<td>{{origFileNm}}</td>
+						<td>{{fileSize}}</td>
+						<td>{{createDate}}</td>
+					</tr>
+					{{/userFileList}}
+				</tbody>
+			</table>
+		</div>
+		<form action="/ckeditor/file/single_upload" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="file">File</label> 
+				<input type="file"	class="form-control" name="upload" placeholder="Select File">
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Upload</button>
+		</form>	
+	</div>
+</body>
+</html>

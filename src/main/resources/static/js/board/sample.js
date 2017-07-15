@@ -92,7 +92,7 @@ var initSample = ( function() {
 					
 					 {
 						    //filebrowserBrowseUrl: '/ckeditor/file/files',
-						    filebrowserBrowseUrl: '/ckeditor/jbtest/returnFileUrl_3.html',
+						    filebrowserBrowseUrl: '/ckeditor/file/editorFileList',
 						    filebrowserUploadUrl: '/ckeditor/file/single_upload'
 					 }
 			);

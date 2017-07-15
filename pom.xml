@@ -94,6 +94,15 @@
     <artifactId>thymeleaf</artifactId>
     <version>3.0.6.RELEASE</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcprov-jdk16</artifactId>
+    <version>1.46</version>
+</dependency>
+
+
 	</dependencies>
 
 	<build>
