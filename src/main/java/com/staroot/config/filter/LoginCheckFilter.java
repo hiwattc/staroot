@@ -36,6 +36,10 @@ public class LoginCheckFilter implements Filter {
 					requestURI.equals("/") ||
 					requestURI.startsWith("/api/users") ||
 					requestURI.startsWith("/user/login") ||
+					requestURI.startsWith("/user/login2") ||
+					requestURI.startsWith("/user/login3") ||
+					requestURI.startsWith("/user/login4") ||
+					requestURI.startsWith("/user/login5") ||
 					requestURI.startsWith("/user/register") ||
 					requestURI.startsWith("/user/profile/image") ||
 					requestURI.startsWith("/images") ||
@@ -44,6 +48,7 @@ public class LoginCheckFilter implements Filter {
 					requestURI.startsWith("/ckeditor") ||
 					requestURI.startsWith("/webjars") ||
 					requestURI.startsWith("/board/list") ||
+					requestURI.startsWith("/login_design") ||
 					requestURI.startsWith("/board/file")
 					){
 				//DO NOT LoginCheck

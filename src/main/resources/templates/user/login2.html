@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{{> /include/header }}
+
+      <link rel="stylesheet" href="/login_design/01_mp4style/css/style.css">
+
+</head>
+<body>
+	{{> /include/navigation }}
+	
+	
+
+	
+  <div class="vid-container">
+  <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
+      <source src="/login_design/01_mp4style/mov_bbb.mp4" type="video/mp4">
+  </video>
+  <div class="inner-container">
+    <div class="box">
+		<form action="/user/login" method="POST" class="loginForm">
+      <h1>Login</h1>
+			{{#loginFailCnt}}
+			<span class="label label-danger">Login Failed! Try Again!</span>&nbsp;&nbsp;
+			<span class="label label-danger">{{loginFailCnt}}</span>
+			{{/loginFailCnt}}
+			<div class="form-group">
+				 <input type="text"
+					class="form-control" name="userId" id="userId" placeholder="UserId" value="test1">
+			</div>
+			<div class="form-group">
+				 <input type="password"
+					class="form-control" name="password" id="password" placeholder="Password" value="1">
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+            <p>Not a member? <span><a href="/user/register">Sign Up</a></span></p>
+			<input type="hidden" id="rsaPublicKeyModulus" value="{{pubKeyM}}" />
+            <input type="hidden" id="rsaPublicKeyExponent" value="{{pubKeyE}}" />
+		</form>
+    </div>
+  </div>
+  </div>
+	
+	<script src="/js/scripts.js"></script>
+</body>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/jsbn.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/rsa.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/prng4.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/rng.js"></script>
+        <script type="text/javascript" src="{{contextPath}}/js/security/rsa/base64.js"></script>        
+        <script type="text/javascript" src="{{contextPath}}/js/security/login.js"></script>
+        
+        <script type="text/javascript" src="{{contextPath}}/login_design/01_mp4style/js/index.js"></script>
+        
+
+</html>
