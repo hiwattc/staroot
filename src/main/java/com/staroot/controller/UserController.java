@@ -74,13 +74,19 @@ public class UserController {
 	public String login(HttpServletRequest request,Model model) {
 		
 		rsaEncUtil.createRsaKey(request, model);
-		return "/user/login2";
+		return "/user/login3";
 	}
 	@GetMapping("/login2")
 	public String login2(HttpServletRequest request,Model model) {
 		
 		rsaEncUtil.createRsaKey(request, model);
 		return "/user/login2";
+	}
+	@GetMapping("/login3")
+	public String login3(HttpServletRequest request,Model model) {
+		
+		rsaEncUtil.createRsaKey(request, model);
+		return "/user/login3";
 	}
 
 	@PostMapping("/login")
@@ -166,7 +172,15 @@ public class UserController {
 
 	@GetMapping("/register")
 	public String registerForm() {
-		return "/user/register";
+		return "/user/register3";
+	}
+	@GetMapping("/register2")
+	public String registerForm2() {
+		return "/user/register2";
+	}
+	@GetMapping("/register3")
+	public String registerForm3() {
+		return "/user/register3";
 	}
 
 	@PostMapping("/register")

@@ -41,6 +41,8 @@ public class LoginCheckFilter implements Filter {
 					requestURI.startsWith("/user/login4") ||
 					requestURI.startsWith("/user/login5") ||
 					requestURI.startsWith("/user/register") ||
+					requestURI.startsWith("/user/register2") ||
+					requestURI.startsWith("/user/register3") ||
 					requestURI.startsWith("/user/profile/image") ||
 					requestURI.startsWith("/images") ||
 					requestURI.startsWith("/js") ||
