@@ -102,7 +102,12 @@
     <version>1.46</version>
 </dependency>
 
-
+<!--  17.12.25 added by sjb for rabbitmq TEST -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+    
 	</dependencies>
 
 	<build>
