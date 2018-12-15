@@ -109,20 +109,15 @@
         </dependency>
         
 <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter -->
-<!-- 
-<dependency>
-    <groupId>org.keycloak</groupId>
-    <artifactId>keycloak-spring-boot-starter</artifactId>
-    <version>4.7.0.Final</version>
-</dependency>
- -->
-<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter -->
+<!-- 18.12.15 staroot서버 적용위해서 제외처리함 로컬 맥북에서만 테스트하는 용도임  
 <dependency>
     <groupId>org.keycloak</groupId>
     <artifactId>keycloak-spring-boot-starter</artifactId>
     <version>3.4.3.Final</version>
 </dependency>
-
+ -->
+ 
+ 
 <!-- Swagger --> 			
 <dependency>
 	<groupId>io.springfox</groupId>
