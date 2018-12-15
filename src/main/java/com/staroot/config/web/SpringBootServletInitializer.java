@@ -20,17 +20,20 @@ public class SpringBootServletInitializer extends org.springframework.boot.web.s
     //war를 처리하기위해 필요하다.
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+    	System.out.println("##### SpringBootServletInitializer configure start #####");
         return application.sources(StarootApplication.class);
     }
 
 
     @Bean
     public HttpMessageConverter<String> responseBodyConverter() {
+    	System.out.println("##### SpringBootServletInitializer HttpMessageConverter start #####");
         return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
     @Bean
     public Filter characterEncodingFilter() {
+    	System.out.println("##### SpringBootServletInitializer characterEncodingFilter start #####");
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
@@ -42,6 +45,7 @@ public class SpringBootServletInitializer extends org.springframework.boot.web.s
 	//////////////@EnableScheduling 붙쳐줘야한다
 	@Bean
 	public ScheduledExecutorFactoryBean scheduledExecutorService() {
+    	System.out.println("##### SpringBootServletInitializer scheduledExecutorService start #####");
 		ScheduledExecutorFactoryBean bean = new ScheduledExecutorFactoryBean();
 		bean.setPoolSize(5);
 		return bean;

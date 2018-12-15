@@ -45,7 +45,12 @@ import com.staroot.domain.User;
 import com.staroot.domain.UserPicture;
 import com.staroot.domain.UserRepository;
 import com.staroot.util.web.HttpSessionUtil;
-import com.staroot.util.web.RsaEncUtil;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
+import com.staroot.util.RsaEncUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -298,6 +303,12 @@ public class UserController {
 		return "/user/member";
 	}
 
+	
+	@ApiOperation(value ="메시지조회하기(alert)-api custom test 18.12.15")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
+            @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
+    })
 	@GetMapping("/alert")
 	public String msgList(Model model) {
 		List<Message> msgList = new ArrayList<Message>();

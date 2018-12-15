@@ -1,4 +1,4 @@
-package com.staroot.util.web;
+package com.staroot.util;
 
 import java.io.IOException;
 import java.math.BigInteger;
