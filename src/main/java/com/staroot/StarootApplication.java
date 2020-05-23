@@ -27,7 +27,8 @@ public class StarootApplication {
 	public static String UPLOAD_DIR_CKEDITOR = "/staroot_upload_dir/ckeditor";
 	public static String UPLOAD_DIR_PATH;
 
-	/*rabbit mq test */
+    /*rabbit mq test */
+    /*
 	public final static String queueName = "hello2";
 	@Bean
     Queue queue() {
@@ -57,7 +58,7 @@ public class StarootApplication {
     @Bean
     MessageListenerAdapter listenerAdapter(Receiver receiver) {
         return new MessageListenerAdapter(receiver, "receiveMessage");
-    }
+    }*/
     
     
 	public static void main(String[] args) {
