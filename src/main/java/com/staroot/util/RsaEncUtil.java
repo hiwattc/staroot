@@ -52,6 +52,10 @@ public class RsaEncUtil {
 			HttpSession session = request.getSession();
 			// 세션에 공개키의 문자열을 키로하여 개인키를 저장한다.
 			session.setAttribute("__rsaPrivateKey__", privateKey);
+			System.out.println("==================================================================");
+			System.out.println("publicKey created :   " + publicKey);
+			System.out.println("privateKey created :      " + privateKey);
+			System.out.println("==================================================================");
 
 			// 공개키를 문자열로 변환하여 JavaScript RSA 라이브러리 넘겨준다.
 			RSAPublicKeySpec publicSpec = (RSAPublicKeySpec) keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
@@ -59,8 +63,10 @@ public class RsaEncUtil {
 			String publicKeyModulus = publicSpec.getModulus().toString(16);
 			String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
 
-			System.out.println("publicKeyModulus:" + publicKeyModulus);
-			System.out.println("publicKeyExponent:" + publicKeyExponent);
+			System.out.println("==================================================================");
+			System.out.println("publicKeyModulus :     " + publicKeyModulus);
+			System.out.println("publicKeyExponent :     " + publicKeyExponent);
+			System.out.println("==================================================================");
 
 			request.setAttribute("pubKeyM", publicKeyModulus);
 			request.setAttribute("pubKeyE", publicKeyExponent);
@@ -96,6 +102,10 @@ public class RsaEncUtil {
 														// 받도록 강제.
 
 		if (privateKey == null) {
+			
+			System.out.println("------------------------------------------");
+			System.out.println("No pricate key founded");
+			System.out.println("------------------------------------------");
 			throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
 		}
 		try {
