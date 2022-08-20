@@ -1,2 +1,2 @@
-LANG=ko_KR.EUC-KR
+#LANG=ko_KR.EUC-KR
 ./mvnw spring-boot:run &
