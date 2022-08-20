@@ -111,7 +111,9 @@ public class MailController {
          
         Authenticator auth = new Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("starootmaster@gmail.com", "pqfcsnbfyvkgffxw");
+                //return new PasswordAuthentication("starootmaster@gmail.com", "pqfcsnbfyvkgffxw");
+                return new PasswordAuthentication("starootmaster@gmail.com", "cippxhtgsfxsxcss");
+				
             }
         };
  
