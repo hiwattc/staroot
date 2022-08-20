@@ -88,6 +88,7 @@ public class MailController {
 			//mailSender.sendMail(board.getContents());
 			sendMail(board.getTitle(),contents);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage()); 
 		}
 		
@@ -99,15 +100,29 @@ public class MailController {
     public void sendMail(String subject, String mailContents) throws Exception{
         
         Properties props = new Properties();
+
+        System.out.println("00000000000 mail");
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.host", "smtp.gmail.com");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.socketFactory.port", "465");
-        //props.put("mail.smtp.port", "587");
-        //props.put("mail.smtp.socketFactory.port", "587");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
+
+		//22.08.15 added options for TLSv1.2
+		//---------------------------------------------------------
+		//props.put("mail.smtp.starttls.enable","true");
+		//props.put("mail.smtp.debug", "true");
+		//props.put("mail.smtp.user", "starootmaster@gmail.com");
+		//props.put("mail.smtp.ssl.trust","smtp.gmail.com");
+        //props.put("mail.smtp.port", "587");
+        //props.put("mail.smtp.socketFactory.port", "587");
+		props.put("mail.smtp.ssl.protocols","TLSv1.2");
+		//---------------------------------------------------------
+
+
+
         props.setProperty("mail.smtp.quitwait", "false");
         System.out.println("11111111111111 mail");
          

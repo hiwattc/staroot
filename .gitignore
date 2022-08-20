@@ -1,6 +1,10 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### logfiles ###
+nohup.out
+
+
 ### STS ###
 .apt_generated
 .classpath
