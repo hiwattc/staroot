@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> /include/header }}
+
+<script src="/ckeditor/ckeditor.js"></script>
+<script src="/js/handlebar/ckforhb.js"></script>
+
+</head>
+<body>
+	{{> /include/navigation }}
+	
+	<div class="container">
+		<h1>HBTest</h1>
+		<form action="/board/modify" method="POST">
+		<input type="hidden" name="_method" value="PUT" >
+			<div class="form-group">
+  				<label for="contents">Template</label> 
+		    	<textarea id="contents" class="form-control" rows="3" name="contents" placeholder = "Contents">this is textarea</textarea>
+			</div>
+			<div class="form-group">
+				<label for="contents">Json Data</label> 
+			    <textarea class="form-control" rows="3" placeholder = "Contents">Input json data</textarea>
+		    </div>
+		    <div class="form-group">
+		    	<label for="contents">Result</label> 
+		        <textarea class="form-control" rows="10" placeholder = "Contents">Result</textarea>
+	        </div>
+	        <button type="submit" class="btn btn-primary btn-lg btn-block">APPLY</button><br>
+		</form>
+	</div>
+</body>
+<script>
+	initSample();
+</script>
+</html>

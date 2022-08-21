@@ -35,6 +35,19 @@ public class MailSender {
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
+
+		//22.08.21 added options for TLSv1.2
+		//---------------------------------------------------------
+		//props.put("mail.smtp.starttls.enable","true");
+		//props.put("mail.smtp.debug", "true");
+		//props.put("mail.smtp.user", "starootmaster@gmail.com");
+		//props.put("mail.smtp.ssl.trust","smtp.gmail.com");
+        //props.put("mail.smtp.port", "587");
+        //props.put("mail.smtp.socketFactory.port", "587");
+		props.put("mail.smtp.ssl.protocols","TLSv1.2");
+		//---------------------------------------------------------
+
+
         props.setProperty("mail.smtp.quitwait", "false");
         System.out.println("11111111111111 mail");
          

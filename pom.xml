@@ -11,7 +11,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.22.RELEASE</version>
+		<!--<version>1.5.3.RELEASE</version>-->
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -51,12 +52,15 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
-			<version>3.3.7-1</version>
+			<version>3.4.1</version>
+			<!--<version>5.2.0</version>-->
+			<!--<version>3.3.7-1</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
-			<version>3.1.0</version>
+			<!--version>3.1.0</version>-->
+			<version>3.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.spullara.mustache.java</groupId>
@@ -79,7 +83,9 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.192</version>
+			<!--<version>2.1.214</version>-->
+			<!--<version>1.4.192</version>-->
+			<version>1.4.200</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 
@@ -96,10 +102,18 @@
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
+<!--
 <dependency>
     <groupId>org.bouncycastle</groupId>
     <artifactId>bcprov-jdk16</artifactId>
     <version>1.46</version>
+</dependency>
+-->
+<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on --><!--2022.08.22 modifed-->
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcprov-jdk18on</artifactId>
+    <version>1.71</version>
 </dependency>
 
 <!--  17.12.25 added by sjb for rabbitmq TEST -->
@@ -129,6 +143,7 @@
 	<groupId>io.springfox</groupId>
 	<artifactId>springfox-swagger-ui</artifactId>
 	<version>2.6.1</version>
+	<!--<version>3.0.0</version>-->
 </dependency>
 
 
