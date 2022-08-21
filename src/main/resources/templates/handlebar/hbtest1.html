@@ -6,18 +6,23 @@
 <script src="/ckeditor/ckeditor.js"></script>
 <script src="/js/handlebar/ckforhb.js"></script>
 
+<!-- include editor style. -->
+<link href="https://cdn.jsdelivr.net/npm/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 	{{> /include/navigation }}
-	
+
+	{{#boardDetail}}
 	<div class="container">
 		<h1>HBTest</h1>
 		<form action="/board/modify" method="POST">
 		<input type="hidden" name="_method" value="PUT" >
 			<div class="form-group">
   				<label for="contents">Template</label> 
-		    	<textarea id="contents" class="form-control" rows="3" name="contents" placeholder = "Contents">this is textarea</textarea>
+		    	<textarea id="contents" class="form-control" rows="3" name="contents" placeholder = "Contents">{{contents}}</textarea>
 			</div>
+			<froala_textarea id="froala-editor">{{{contents}}}</froala_textarea>
 			<div class="form-group">
 				<label for="contents">Json Data</label> 
 			    <textarea class="form-control" rows="3" placeholder = "Contents">Input json data</textarea>
@@ -29,8 +34,30 @@
 	        <button type="submit" class="btn btn-primary btn-lg btn-block">APPLY</button><br>
 		</form>
 	</div>
+	{{/boardDetail}}
+
 </body>
+<!-- Include editor JS files. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
 <script>
 	initSample();
+    //new FroalaEditor("froala_textarea",{toolbarButtons: ['undo', 'redo', '|', 'bold', 'italic', 'underline']});
+
+	new FroalaEditor("froala_textarea");
+
+	/*
+	{{#boardDetail}}
+	var editor = new FroalaEditor("froala_textarea", {}, function () {
+    // Call the method inside the initialized event.
+    //editor.html.insert('{{contents}}');
+	editor.html.set('{{contents}}');
+	//editor.html.set('<p><b>bold</b></p>');
+    })
+	{{/boardDetail}}
+	*/
+	
+
 </script>
+
 </html>

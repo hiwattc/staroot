@@ -29,11 +29,19 @@ public class RsaEncUtil {
 	//public static final int KEY_SIZE = 2048;// NOK
 	//public static final int KEY_SIZE = 128;// NOK
 
+	public static final String PADDING_TYPE = "RSA";
+	//public static final String PADDING_TYPE = "RSA/ECB/PKCS1Padding";
+	//public static final String PADDING_TYPE = "RSA/None/PKCS1Padding";
+
 	public void createRsaKey(HttpServletRequest request, Model model) {
 		try {
 			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 			
-			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+			//KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+			KeyPairGenerator generator = KeyPairGenerator.getInstance(PADDING_TYPE);//2022.08.22
+			//KeyPairGenerator generator = KeyPairGenerator.getInstance(PADDING_TYPE,"BC");//2022.08.22
+
+			
 			//KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA/ECB/PKCS1Padding");
 			//KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA/None/PKCS1Padding");
 			
@@ -42,7 +50,13 @@ public class RsaEncUtil {
 			generator.initialize(KEY_SIZE);
 
 			KeyPair keyPair = generator.genKeyPair();
-			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			//KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			KeyFactory keyFactory = KeyFactory.getInstance(PADDING_TYPE);//2022.08.22
+			//KeyFactory keyFactory = KeyFactory.getInstance(PADDING_TYPE,"BC");//2022.08.22
+			//KeyFactory keyFactory = KeyFactory.getInstance("RSA/ECB/NOPADDING");//2022.08.22
+
+			
+
 			//KeyFactory keyFactory = KeyFactory.getInstance("RSA/ECB/PKCS1Padding");
 			//KeyFactory keyFactory = KeyFactory.getInstance("RSA/None/PKCS1Padding");
 
@@ -96,6 +110,13 @@ public class RsaEncUtil {
 		String securedUsername = request.getParameter("userId");
 		String securedPassword = request.getParameter("password");
 
+		System.out.println("------------------------------------------");
+		System.out.println("------------------------------------------");
+		System.out.println("securedUsername length ::"+securedUsername.length());
+		System.out.println("securedPassword length ::"+securedPassword.length());
+		System.out.println("------------------------------------------");
+		System.out.println("------------------------------------------");
+
 		HttpSession session = request.getSession();
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
 		session.removeAttribute("__rsaPrivateKey__"); // 키의 재사용을 막는다. 항상 새로운 키를
@@ -141,7 +162,10 @@ public class RsaEncUtil {
 			
 			
 			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			Cipher cipher = Cipher.getInstance("RSA");//초기버전 
+			//Cipher cipher = Cipher.getInstance("RSA");//초기버전 
+			Cipher cipher = Cipher.getInstance(PADDING_TYPE);//2022.08.22
+			//Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPwithSHA1andMGF1Padding","BC");
+			//Cipher cipher = Cipher.getInstance("RSA/ECB/NOPADDING");//2022.08.22
 			//Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			//Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding", "BC");
 			
@@ -158,16 +182,28 @@ public class RsaEncUtil {
 					System.arraycopy(encryptedBytes, 1, encryptedBytes2, 0, encryptedBytes.length-1);
 			}
 			*/
+
+			/*
+			org.bouncycastle.jcajce.provider.util.BadBlockException: unable to decrypt block
+            at org.bouncycastle.jcajce.provider.asymmetric.rsa.CipherSpi.getOutput(Unknown Source)
+            at org.bouncycastle.jcajce.provider.asymmetric.rsa.CipherSpi.engineDoFinal(Unknown Source)
+			*/
 			
+			System.out.println("111111111111111111111111111111111111");
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
+			System.out.println("222222222222222222222222222222222222");
+			String encryptedValue = new String(encryptedBytes, "utf-8"); // 문자
+			System.out.println("encryptedValue ::" + encryptedValue);
+			System.out.println("*****************************encryptedValue length ::" + encryptedValue.length());
+
 			
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+
 			//byte[] decryptedBytes = cipher.doFinal(base64Decode(securedValue));
-			
-			
+			System.out.println("333333333333333333333333333333333333");
 			decryptedValue = new String(decryptedBytes, "utf-8"); // 문자
-																			// 인코딩
-																			// 주의.
+			System.out.println("decryptedValue ::" + decryptedValue);
+			System.out.println("444444444444444444444444444444444444");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
